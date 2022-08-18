@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
@@ -6,34 +6,27 @@ import { Filter } from './Filter/Filter';
 import { Notify } from 'notiflix';
 import { Title, TitleContact, Section } from './App.styled';
 
-export class App extends Component {
-  state = {
-    contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-    ],
-    filter: '',
-  };
+const initialContacts = [
+  { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+  { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+  { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+  { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+];
 
-  componentDidMount() {
-    const parsedContacts = JSON.parse(localStorage.getItem('contacts'));
-    if (parsedContacts) {
-      this.setState({ contacts: parsedContacts });
-    }
-  }
+export const App = () => {
+  const [contacts, setContacts] = useState(
+    JSON.parse(localStorage.getItem('contacts')) ?? initialContacts
+  );
+  const [filter, setFilter] = useState('');
 
-  componentDidUpdate(_, prevState) {
-    if (this.state.contacts !== prevState.contacts) {
-      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
-    }
-  }
+  useEffect(() => {
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+  }, [contacts]);
 
-  addContact = ({ name, number }) => {
+  const addContact = ({ name, number }) => {
     const newContact = { id: nanoid(), name, number };
 
-    this.state.contacts.find(contact => contact.name === name)
+    contacts.find(contact => contact.name === name)
       ? Notify.info(`${name} is already in contacts`, {
           position: 'center-top',
           fontSize: '20px',
@@ -46,18 +39,15 @@ export class App extends Component {
             notiflixIconColor: 'rgba(225,225,225,0.5)',
           },
         })
-      : this.setState(({ contacts }) => ({
-          contacts: [newContact, ...contacts],
-        }));
+      : setContacts(prevContacts => [newContact, ...prevContacts]);
   };
 
-  filterHandler = e => {
+  const filterHandler = e => {
     const { value } = e.target;
-    this.setState({ filter: value.toLowerCase().trim() });
+    setFilter(value.toLowerCase().trim());
   };
 
-  filterContactList = () => {
-    const { filter, contacts } = this.state;
+  const filterContactList = () => {
     const normalizedFilter = filter.toLowerCase();
 
     return contacts.filter(({ name }) =>
@@ -65,28 +55,22 @@ export class App extends Component {
     );
   };
 
-  deleteContact = contactId => {
-    this.setState(prevState => ({
-      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
-    }));
-  };
-
-  render() {
-    const { filter } = this.state;
-    const { addContact, filterHandler, deleteContact } = this;
-    const filterContactList = this.filterContactList();
-
-    return (
-      <Section>
-        <Title>Phonebook</Title>
-        <ContactForm onSubmit={addContact} />
-        <TitleContact>Contacts</TitleContact>
-        <Filter value={filter} onChange={filterHandler} />
-        <ContactList
-          contacts={filterContactList}
-          onDeleteContact={deleteContact}
-        />
-      </Section>
+  const deleteContact = contactId => {
+    const filteredContacts = contacts.filter(
+      contact => contact.id !== contactId
     );
-  }
-}
+    setContacts(filteredContacts);
+  };
+  return (
+    <Section>
+      <Title>Phonebook</Title>
+      <ContactForm onSubmit={addContact} />
+      <TitleContact>Contacts</TitleContact>
+      <Filter value={filter} onChange={filterHandler} />
+      <ContactList
+        contacts={filterContactList()}
+        onDeleteContact={deleteContact}
+      />
+    </Section>
+  );
+};
