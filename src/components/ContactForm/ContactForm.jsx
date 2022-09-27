@@ -2,6 +2,8 @@ import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 import PropTypes from 'prop-types';
 import { Button, Label, Input, Message } from './ContactForm.styled';
+import { useDispatch } from 'react-redux';
+import { addContact } from 'redux/actions';
 
 const schema = yup.object().shape({
   name: yup
@@ -24,10 +26,37 @@ const initialValues = {
   name: '',
   number: '',
 };
-export const ContactForm = ({ onSubmit }) => {
+
+// const onSubmit = ({ name, number }) => {
+//   dispatch(addContact)
+// }
+
+// const onSubmit= ({ name, number }) => {
+//   const newContact = { id: nanoid(), name, number };
+
+//   contacts.find(contact => contact.name === name)
+//     ? Notify.info(`${name} is already in contacts`, {
+//         position: 'center-top',
+//         fontSize: '20px',
+//         width: '450px',
+//         borderRadius: '4px',
+//         closeButton: true,
+//         info: {
+//           background: '#000000',
+//           color: '#ffffff',
+//           notiflixIconColor: 'rgba(225,225,225,0.5)',
+//         },
+//       })
+//     : setContacts(prevContacts => [newContact, ...prevContacts]);
+// };
+
+export const ContactForm = () => {
+  const dispatch = useDispatch();
+
   const handleSubmit = (values, { resetForm }) => {
     // console.log(values);
-    onSubmit(values);
+    // onSubmit(values);
+    dispatch(addContact(values));
     resetForm();
   };
   return (
