@@ -2,7 +2,7 @@ import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 import { Button, Label, Input, Message } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/actions';
+import { addContact } from 'redux/contactsSlice';
 import { Notify } from 'notiflix';
 import { getContacts } from '../../redux/selectors';
 const schema = yup.object().shape({

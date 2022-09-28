@@ -1,8 +1,7 @@
-import PropTypes from 'prop-types';
 import { Box } from 'components/Box';
 import { Label, Input } from './Filter.styled';
 import { useDispatch } from 'react-redux';
-import { setFilter } from 'redux/actions';
+import { setFilter } from 'redux/filtersSlice';
 
 export const Filter = () => {
   const dispatch = useDispatch();
@@ -18,9 +17,4 @@ export const Filter = () => {
       </Label>
     </Box>
   );
-};
-
-Filter.prototype = {
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
 };
