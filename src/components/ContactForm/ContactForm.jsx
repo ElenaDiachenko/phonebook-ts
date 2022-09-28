@@ -1,10 +1,10 @@
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
-import PropTypes from 'prop-types';
 import { Button, Label, Input, Message } from './ContactForm.styled';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/actions';
-
+import { Notify } from 'notiflix';
+import { getContacts } from '../../redux/selectors';
 const schema = yup.object().shape({
   name: yup
     .string()
@@ -26,39 +26,40 @@ const initialValues = {
   name: '',
   number: '',
 };
-
-// const onSubmit = ({ name, number }) => {
-//   dispatch(addContact)
-// }
-
-// const onSubmit= ({ name, number }) => {
-//   const newContact = { id: nanoid(), name, number };
-
-//   contacts.find(contact => contact.name === name)
-//     ? Notify.info(`${name} is already in contacts`, {
-//         position: 'center-top',
-//         fontSize: '20px',
-//         width: '450px',
-//         borderRadius: '4px',
-//         closeButton: true,
-//         info: {
-//           background: '#000000',
-//           color: '#ffffff',
-//           notiflixIconColor: 'rgba(225,225,225,0.5)',
-//         },
-//       })
-//     : setContacts(prevContacts => [newContact, ...prevContacts]);
-// };
+const options = {
+  position: 'center-top',
+  fontSize: '20px',
+  width: '450px',
+  borderRadius: '4px',
+  closeButton: true,
+  info: {
+    background: '#000000',
+    color: '#ffffff',
+    notiflixIconColor: 'rgba(225,225,225,0.5)',
+  },
+};
 
 export const ContactForm = () => {
+  const contacts = useSelector(getContacts);
   const dispatch = useDispatch();
 
-  const handleSubmit = (values, { resetForm }) => {
-    // console.log(values);
-    // onSubmit(values);
-    dispatch(addContact(values));
+  const addValidateValues = async values => {
+    if (contacts.find(contact => contact.name === values.name)) {
+      Notify.info(`${values.name} is already in contacts`, options);
+      return;
+    }
+    try {
+      await dispatch(addContact(values));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleSubmit = async (values, { resetForm }) => {
+    await addValidateValues(values);
     resetForm();
   };
+
   return (
     <Formik
       initialValues={initialValues}
@@ -81,8 +82,4 @@ export const ContactForm = () => {
       </Form>
     </Formik>
   );
-};
-
-ContactForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
 };
