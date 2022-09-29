@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/operations';
 import { Notify } from 'notiflix';
 import { selectContacts } from 'redux/selectors';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 const schema = yup.object().shape({
   name: yup
@@ -28,7 +29,7 @@ const initialValues = {
   number: '',
 };
 const options = {
-  position: 'center-top',
+  position: 'right-top',
   fontSize: '20px',
   width: '450px',
   borderRadius: '4px',
@@ -51,13 +52,16 @@ export const ContactForm = () => {
     }
     try {
       await dispatch(addContact(values));
+      Notify.info(`Contact added successfully`, options);
     } catch (error) {
+      Notify.info(`Error adding contact`, options);
       console.log(error);
     }
   };
 
-  const handleSubmit = async (values, { resetForm }) => {
+  const handleSubmit = async (values, { resetForm, setSubmitting }) => {
     await addValidateValues(values);
+    setSubmitting(false);
     resetForm();
   };
 
@@ -67,20 +71,27 @@ export const ContactForm = () => {
       validationSchema={schema}
       onSubmit={handleSubmit}
     >
-      <Form>
-        <Label>
-          Name
-          <Input type="text" name="name" />
-          <Message name="name" component="span" />
-        </Label>
+      {({ isSubmitting }) => {
+        return (
+          <Form>
+            <Label>
+              Name
+              <Input type="text" name="name" />
+              <Message name="name" component="span" />
+            </Label>
 
-        <Label>
-          Number
-          <Input type="tel" name="number" />
-          <Message name="number" component="span" />
-        </Label>
-        <Button type="submit">Add contact</Button>
-      </Form>
+            <Label>
+              Number
+              <Input type="tel" name="number" />
+              <Message name="number" component="span" />
+            </Label>
+            <Button type="submit" disabled={isSubmitting}>
+              {!isSubmitting && 'Add contact'}
+              {isSubmitting && <ClipLoader color="#ffffff" size={12} />}
+            </Button>
+          </Form>
+        );
+      }}
     </Formik>
   );
 };
