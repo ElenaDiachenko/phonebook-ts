@@ -3,6 +3,7 @@ import * as yup from 'yup';
 import { Button, Label, Input, Message } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
 // import { addContact } from 'redux/contactsSlice';
+import { addContact } from 'redux/operations';
 import { Notify } from 'notiflix';
 import { getContacts } from '../../redux/selectors';
 const schema = yup.object().shape({
@@ -49,7 +50,7 @@ export const ContactForm = () => {
       return;
     }
     try {
-      // await dispatch(addContact(values));
+      await dispatch(addContact(values));
     } catch (error) {
       console.log(error);
     }
