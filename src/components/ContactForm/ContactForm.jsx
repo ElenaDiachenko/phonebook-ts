@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // import { addContact } from 'redux/contactsSlice';
 import { addContact } from 'redux/operations';
 import { Notify } from 'notiflix';
-import { getContacts } from '../../redux/selectors';
+import { selectContacts } from '../../redux/selectors';
 const schema = yup.object().shape({
   name: yup
     .string()
@@ -41,7 +41,7 @@ const options = {
 };
 
 export const ContactForm = () => {
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
 
   const addValidateValues = async values => {
