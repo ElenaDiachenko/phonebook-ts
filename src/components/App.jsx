@@ -1,29 +1,30 @@
-import { ContactForm } from './ContactForm/ContactForm';
-import { ContactList } from './ContactList/ContactList';
-import { Filter } from './Filter/Filter';
-import { Title, TitleContact, Section } from './App.styled';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import { fetchContacts } from 'redux/operations';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { selectIsLoading, selectError } from 'redux/selectors';
+import SharedLayout from './SharedLayout/SharedLayout';
+import ContactsPage from 'pages/ContactsPage';
+import LoginPage from 'pages/LoginPage';
+import RegisterPage from 'pages/RegisterPage';
+import HomePage from 'pages/HomePage';
 
 export const App = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
 
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
   return (
-    <Section>
-      <Title>Phonebook</Title>
-      <ContactForm />
-      <TitleContact>Contacts</TitleContact>
-      <Filter />
-      {isLoading && !error && <b>Request in progress...</b>}
-      <ContactList />
-    </Section>
+    <>
+      <Routes>
+        <Route path="/" element={<SharedLayout />} />
+        <Route index element={<HomePage />} />
+        <Route path="register" element={<RegisterPage />} />
+        <Route path="login" element={<LoginPage />} />
+        <Route path="contacts" element={<ContactsPage />} />
+        <Route path="*" element={<Navigate to={'/'} />} />
+      </Routes>
+    </>
   );
 };
