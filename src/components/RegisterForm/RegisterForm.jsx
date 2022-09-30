@@ -1,5 +1,7 @@
+import { useDispatch } from 'react-redux';
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
+import { register } from 'redux/auth/auth-operations';
 import { Button, Label, Input, Message } from './RegisterForm.styled';
 // import { Notify } from 'notiflix';
 // import ClipLoader from 'react-spinners/ClipLoader';
@@ -18,18 +20,22 @@ const schema = yup.object().shape({
     .required('E-mail is required!'),
   password: yup
     .string()
-    .min(6, 'Password has to be longer than 6 characters!')
+    .min(2, 'Password has to be longer than 6 characters!')
     .required('Password is required!'),
 });
 
 const initialValues = {
+  name: '',
   email: '',
   password: '',
 };
 
 export const RegisterForm = () => {
-  const handleSubmit = async (values, { resetForm, setSubmitting }) => {
+  const dispatch = useDispatch();
+  const handleSubmit = (value, { resetForm, setSubmitting }) => {
     setSubmitting(false);
+    console.log(value);
+    dispatch(register(value));
     resetForm();
   };
 
