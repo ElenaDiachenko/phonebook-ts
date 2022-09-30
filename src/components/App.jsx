@@ -1,8 +1,9 @@
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { fetchContacts } from 'redux/operations';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import SharedLayout from './SharedLayout/SharedLayout';
+import { GlobalStyle } from '../components/GlobalStyle';
+import SharedLayout from '../components/SharedLayout/SharedLayout';
 import ContactsPage from 'pages/ContactsPage';
 import LoginPage from 'pages/LoginPage';
 import RegisterPage from 'pages/RegisterPage';
@@ -17,13 +18,15 @@ export const App = () => {
 
   return (
     <>
+      <GlobalStyle />
       <Routes>
-        <Route path="/" element={<SharedLayout />} />
-        <Route index element={<HomePage />} />
-        <Route path="register" element={<RegisterPage />} />
-        <Route path="login" element={<LoginPage />} />
-        <Route path="contacts" element={<ContactsPage />} />
-        <Route path="*" element={<Navigate to={'/'} />} />
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="register" element={<RegisterPage />} />
+          <Route path="login" element={<LoginPage />} />
+          <Route path="contacts" element={<ContactsPage />} />
+        </Route>
+                  <Route path="*" element={<p>Not Found</p>} />
       </Routes>
     </>
   );
