@@ -1,6 +1,8 @@
+import { useDispatch } from 'react-redux';
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 import { Button, Label, Input, Message } from './LoginForm.styled';
+import { logIn } from 'redux/auth/auth-operations';
 // import { Notify } from 'notiflix';
 // import ClipLoader from 'react-spinners/ClipLoader';
 
@@ -21,8 +23,10 @@ const initialValues = {
 };
 
 export const LoginForm = () => {
-  const handleSubmit = async (values, { resetForm, setSubmitting }) => {
+  const dispatch = useDispatch();
+  const handleSubmit = (values, { resetForm, setSubmitting }) => {
     setSubmitting(false);
+    dispatch(logIn(values));
     resetForm();
   };
 

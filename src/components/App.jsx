@@ -1,7 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
-import { fetchContacts } from 'redux/operations';
+// import { fetchContacts } from 'redux/operations';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import { fetchCurrentUser } from 'redux/auth/auth-operations';
 import { GlobalStyle } from '../components/GlobalStyle';
 import SharedLayout from '../components/SharedLayout/SharedLayout';
 import ContactsPage from 'pages/ContactsPage';
@@ -13,7 +14,7 @@ export const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(fetchCurrentUser());
   }, [dispatch]);
 
   return (
