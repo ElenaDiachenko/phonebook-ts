@@ -9,6 +9,8 @@ import ContactsPage from 'pages/ContactsPage';
 import LoginPage from 'pages/LoginPage';
 import RegisterPage from 'pages/RegisterPage';
 import HomePage from 'pages/HomePage';
+import { PrivateRoute } from '../components/PrivateRoute/PrivateRoute';
+import { PublicRoute } from './Navigation/PublicRoute/PublicRoute';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -22,12 +24,40 @@ export const App = () => {
       <GlobalStyle />
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-          <Route index element={<HomePage />} />
-          <Route path="register" element={<RegisterPage />} />
-          <Route path="login" element={<LoginPage />} />
-          <Route path="contacts" element={<ContactsPage />} />
-          <Route path="*" element={<p>Not Found</p>} />
+          <Route
+            index
+            element={
+              <PublicRoute>
+                <HomePage />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="register"
+            element={
+              <PublicRoute restricted>
+                <RegisterPage />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="login"
+            element={
+              <PublicRoute restricted>
+                <LoginPage />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="contacts"
+            element={
+              <PrivateRoute>
+                <ContactsPage />
+              </PrivateRoute>
+            }
+          />
         </Route>
+        <Route path="*" element={<p>Not Found</p>} />
       </Routes>
     </>
   );
