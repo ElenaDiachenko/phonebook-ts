@@ -61,6 +61,7 @@ export const ContactForm = () => {
 
   const handleSubmit = async (values, { resetForm, setSubmitting }) => {
     await addValidateValues(values);
+
     setSubmitting(false);
     resetForm();
   };

@@ -1,13 +1,22 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { fetchContacts, addContact, deleteContact } from './operations';
+import {
+  fetchContacts,
+  addContact,
+  deleteContact,
+  editContact,
+} from './operations';
 
-const actions = [fetchContacts, addContact, deleteContact];
+const actions = [fetchContacts, addContact, deleteContact, editContact];
 const handleFetchContacts = (state, action) => {
   state.items = action.payload;
 };
 
 const handleAddContact = (state, action) => {
   state.items.push(action.payload);
+};
+const handleEditContact = (state, action) => {
+  const idx = state.items.findIndex(item => item.id === action.payload.id);
+  state.items.splice(idx, 1, action.payload);
 };
 const handleDeleteContact = (state, action) => {
   const idx = state.items.findIndex(item => item.id === action.payload.id);
@@ -40,6 +49,7 @@ const contactsSlice = createSlice({
     builder
       .addCase(fetchContacts.fulfilled, handleFetchContacts)
       .addCase(addContact.fulfilled, handleAddContact)
+      .addCase(editContact.fulfilled, handleEditContact)
       .addCase(deleteContact.fulfilled, handleDeleteContact)
       .addMatcher(
         isAnyOf(...actions.map(action => action.fulfilled)),
