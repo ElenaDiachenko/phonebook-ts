@@ -11,15 +11,19 @@ import { selectIsLoggedIn } from '../../redux/auth/auth-selectors';
 const SharedLayout = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   return (
-    <Container>
+    <>
       <HeaderWrap>
-        <Navigation />
-        {isLoggedIn ? <UserMenu /> : <AuthNav />}
+        <Container>
+          <Navigation />
+          {isLoggedIn ? <UserMenu /> : <AuthNav />}
+        </Container>
       </HeaderWrap>
-      <Suspense fallback={<Loader />}>
-        <Outlet />
-      </Suspense>
-    </Container>
+      <Container>
+        <Suspense fallback={<Loader />}>
+          <Outlet />
+        </Suspense>
+      </Container>
+    </>
   );
 };
 

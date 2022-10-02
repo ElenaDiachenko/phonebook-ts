@@ -23,10 +23,6 @@ const schema = yup.object().shape({
     ),
 });
 
-// const initialValues = {
-//   name: '',
-//   number: '',
-// };
 // const options = {
 //   position: 'right-top',
 //   fontSize: '20px',
@@ -50,20 +46,6 @@ export const ContactEditor = ({ onClose, id }) => {
     name: currentContact.name,
     number: currentContact.number,
   };
-
-  // const addValidateValues = async values => {
-  //   if (contacts.find(contact => contact.name === values.name)) {
-  //     Notify.info(`${values.name} is already in contacts`, options);
-  //     return;
-  //   }
-  //   try {
-  //     await dispatch(addContact(values));
-  //     Notify.info(`Contact added successfully`, options);
-  //   } catch (error) {
-  //     Notify.info(`Error adding contact`, options);
-  //     console.log(error);
-  //   }
-  // };
 
   const handleSubmit = async (values, { resetForm, setSubmitting }) => {
     await dispatch(editContact({ id, ...values }));
