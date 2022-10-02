@@ -1,18 +1,19 @@
-import { Overlay, ModalWindow } from './Modal.styled';
+import { useEffect } from 'react';
+import { AiOutlineClose } from 'react-icons/ai';
+import { Overlay, ModalWindow, Button } from './Modal.styled';
 import PropTypes from 'prop-types';
 import { createPortal } from 'react-dom';
-import { ContactEditor } from '../ContactEditor/ContactEditor';
+
 const modalRoot = document.getElementById('modal-root');
 
-export const Modal = ({ onClose, id }) => {
-  window.addEventListener('keydown', handleKeyDown);
-
-  function handleKeyDown(e) {
-    if (e.code === 'Escape') {
-      onClose();
-      window.removeEventListener('keydown', handleKeyDown);
-    }
-  }
+export const Modal = ({ onClose, children }) => {
+  useEffect(() => {
+    const hanleEscapeClose = e => (e.key === 'Escape' ? onClose() : null);
+    document.body.addEventListener('keydown', hanleEscapeClose);
+    return () => {
+      document.body.removeEventListener('keydown', hanleEscapeClose);
+    };
+  }, [onClose]);
 
   const handleBackdropClick = e => {
     if (e.currentTarget === e.target) {
@@ -23,7 +24,10 @@ export const Modal = ({ onClose, id }) => {
   return createPortal(
     <Overlay onClick={handleBackdropClick}>
       <ModalWindow>
-        <ContactEditor onClose={onClose} id={id} />
+        <Button type="button" onClick={onClose}>
+          <AiOutlineClose />
+        </Button>
+        {children}
       </ModalWindow>
     </Overlay>,
     modalRoot
@@ -32,5 +36,4 @@ export const Modal = ({ onClose, id }) => {
 
 Modal.propTypes = {
   onClose: PropTypes.func.isRequired,
-  id: PropTypes.string.isRequired,
 };

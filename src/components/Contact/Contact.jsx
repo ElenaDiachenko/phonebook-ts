@@ -3,7 +3,7 @@ import { ContactName, ContactNumber, DeleteButton } from './Contact.styled';
 import { useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/contacts/operations';
 import { Modal } from '../Modal/Modal';
-
+import { ContactEditor } from '../ContactEditor/ContactEditor';
 import { useModal } from 'hooks/useModal';
 // import { selectIsLoading } from 'redux/selectors';
 // import { useSelector } from 'react-redux';
@@ -22,7 +22,11 @@ export const Contact = ({ name, number, id }) => {
       </DeleteButton>
       <DeleteButton onClick={openModal}>Edit</DeleteButton>
 
-      {isModalOpen && <Modal onClose={closeModal} id={id} />}
+      {isModalOpen && (
+        <Modal onClose={closeModal}>
+          <ContactEditor onClose={closeModal} id={id} />
+        </Modal>
+      )}
     </>
   );
 };
