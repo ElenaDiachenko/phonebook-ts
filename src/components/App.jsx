@@ -1,18 +1,17 @@
 import { Route, Routes } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, lazy } from 'react';
+import { Loader } from '../components/Loader/Loader';
 import { selectIsRefreshing } from '../redux/auth/auth-selectors';
 import { fetchCurrentUser } from '../redux/auth/auth-operations';
-
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import ClipLoader from 'react-spinners/ClipLoader';
-import { GlobalStyle } from '../components/GlobalStyle';
-import SharedLayout from '../components/SharedLayout/SharedLayout';
-import ContactsPage from 'pages/ContactsPage';
-import LoginPage from 'pages/LoginPage';
-import RegisterPage from 'pages/RegisterPage';
-import HomePage from 'pages/HomePage';
 import { PrivateRoute } from '../components/PrivateRoute/PrivateRoute';
 import { PublicRoute } from '../components/PublicRoute/PublicRoute';
+import { GlobalStyle } from '../components/GlobalStyle';
+import SharedLayout from '../components/SharedLayout/SharedLayout';
+const HomePage = lazy(() => import('pages/HomePage'));
+const ContactsPage = lazy(() => import('pages/ContactsPage'));
+const LoginPage = lazy(() => import('pages/LoginPage'));
+const RegisterPage = lazy(() => import('pages/RegisterPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -27,7 +26,7 @@ export const App = () => {
     <>
       <GlobalStyle />
       {isRefreshing ? (
-        <ClipLoader color="#000000" size={100} />
+        <Loader />
       ) : (
         <Routes>
           <Route path="/" element={<SharedLayout />}>

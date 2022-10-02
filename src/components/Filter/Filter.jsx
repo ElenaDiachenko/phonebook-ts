@@ -1,7 +1,7 @@
 import { Box } from 'components/Box';
 import { Label, Input } from './Filter.styled';
 import { useDispatch } from 'react-redux';
-import { setFilter } from 'redux/filtersSlice';
+import { setFilter } from 'redux/contacts/filtersSlice';
 
 export const Filter = () => {
   const dispatch = useDispatch();
