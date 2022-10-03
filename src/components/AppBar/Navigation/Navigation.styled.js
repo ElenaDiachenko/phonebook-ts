@@ -8,16 +8,13 @@ export const Nav = styled.nav`
   @media screen and (min-width: 768px) {
     gap: ${p => p.theme.space[4]}px;
   }
-
-  @media screen and (min-width: 1200px) {
-    gap: ${p => p.theme.space[5]}px;
-  }
 `;
 
 export const Link = styled(NavLink)`
-  padding: 8px;
+  padding: ${p => p.theme.space[3]}px;
   color: ${p => p.theme.colors.primary};
   font-weight: ${p => p.theme.fontWeights.medium};
+  font-size: ${p => p.theme.fontSizes.m};
 
   :hover:not(.active),
   :focus-visible:not(.active) {
@@ -28,9 +25,9 @@ export const Link = styled(NavLink)`
   }
 `;
 export const Logo = styled(NavLink)`
-  padding: 8px;
+  padding: ${p => p.theme.space[3]}px;
   color: ${p => p.theme.colors.accent};
-  font-weight: ${p => p.theme.fontWeights.medium};
+  font-weight: ${p => p.theme.fontWeights.bold};
 
   :hover:not(.active),
   :focus-visible:not(.active) {
