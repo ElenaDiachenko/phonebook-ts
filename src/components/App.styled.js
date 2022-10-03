@@ -12,7 +12,8 @@ margin-bottom:${p => p.theme.space[4]}px;
 }`;
 
 export const Section = styled.section`
-  width: 480px;
+  max-width: 700px;
+  width: 100%;
   margin: 0 auto;
   padding: ${p => p.theme.space[4]}px;
 `;

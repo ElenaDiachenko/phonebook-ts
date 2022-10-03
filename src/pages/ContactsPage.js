@@ -7,6 +7,7 @@ import { Filter } from '../components/Filter/Filter';
 import { Title, TitleContact, Section } from '../components/App.styled';
 import { useSelector } from 'react-redux';
 import { selectIsLoading, selectError } from 'redux/contacts/selectors';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 const ContactsPage = () => {
   const isLoading = useSelector(selectIsLoading);
@@ -23,7 +24,9 @@ const ContactsPage = () => {
       <ContactForm />
       <TitleContact>Contacts</TitleContact>
       <Filter />
-      {isLoading && !error && <b>Request in progress...</b>}
+      {isLoading && !error && (
+        <ClipLoader style={{ margin: '0 auto' }} color="#000000" size={32} />
+      )}
       <ContactList />
     </Section>
   );

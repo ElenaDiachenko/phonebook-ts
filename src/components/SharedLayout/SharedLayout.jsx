@@ -12,13 +12,11 @@ const SharedLayout = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   return (
     <>
-      <HeaderWrap>
-        <Container>
+      <Container>
+        <HeaderWrap>
           <Navigation />
           {isLoggedIn ? <UserMenu /> : <AuthNav />}
-        </Container>
-      </HeaderWrap>
-      <Container>
+        </HeaderWrap>
         <Suspense fallback={<Loader />}>
           <Outlet />
         </Suspense>

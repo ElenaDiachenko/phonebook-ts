@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, lazy } from 'react';
 import { Loader } from '../components/Loader/Loader';
-import { selectIsRefreshing } from '../redux/auth/auth-selectors';
+import { selectIsRefreshing, selectError } from '../redux/auth/auth-selectors';
 import { fetchCurrentUser } from '../redux/auth/auth-operations';
 import { PrivateRoute } from '../components/PrivateRoute/PrivateRoute';
 import { PublicRoute } from '../components/PublicRoute/PublicRoute';
@@ -16,8 +16,8 @@ const RegisterPage = lazy(() => import('pages/RegisterPage'));
 export const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
+  const error = useSelector(selectError);
 
-  console.log(isRefreshing);
   useEffect(() => {
     dispatch(fetchCurrentUser());
   }, [dispatch]);
@@ -25,6 +25,7 @@ export const App = () => {
   return (
     <>
       <GlobalStyle />
+      {error && <p>Try later</p>}
       {isRefreshing ? (
         <Loader />
       ) : (
