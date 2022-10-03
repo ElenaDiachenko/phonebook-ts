@@ -1,24 +1,30 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  padding: 0 ${p => p.theme.space[4]}px;
-  max-width: 1440px;
-  background-color: grey;
-
-  margin: 0 auto;
-`;
-export const HeaderWrap = styled.header`
+export const Wrapper = styled.div`
+  width: 100%;
+  height: 100vh;
   display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
-  justify-content: space-between;
-  padding: ${p => p.theme.space[4]}px 0;
-  background-color: ${p => p.theme.colors.white};
-  border-bottom: 1px solid black;
+`;
 
-  > nav {
-    display: flex;
-    gap: ${p => p.theme.space[4]}px;
+export const Container = styled.div`
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  @media screen and (min-width: 480px) {
+    width: 480px;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 768px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    width: 1200px;
   }
 `;

@@ -4,7 +4,7 @@ import { fetchContacts } from 'redux/contacts/operations';
 import { ContactForm } from '../components/ContactForm/ContactForm';
 import { ContactList } from '../components/ContactList/ContactList';
 import { Filter } from '../components/Filter/Filter';
-import { Title, TitleContact, Section } from '../components/App.styled';
+import { TitleContact } from '../components/App.styled';
 import { useSelector } from 'react-redux';
 import { selectIsLoading, selectError } from 'redux/contacts/selectors';
 import ClipLoader from 'react-spinners/ClipLoader';
@@ -19,8 +19,7 @@ const ContactsPage = () => {
   }, [dispatch]);
 
   return (
-    <Section>
-      <Title>Phonebook</Title>
+    <main>
       <ContactForm />
       <TitleContact>Contacts</TitleContact>
       <Filter />
@@ -28,7 +27,7 @@ const ContactsPage = () => {
         <ClipLoader style={{ margin: '0 auto' }} color="#000000" size={32} />
       )}
       <ContactList />
-    </Section>
+    </main>
   );
 };
 

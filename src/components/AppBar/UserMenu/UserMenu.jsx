@@ -1,9 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { selectUsername } from '../../redux/auth/auth-selectors';
-import { logOut } from '../../redux/auth/auth-operations';
+import { selectUsername } from 'redux/auth/auth-selectors';
+import { logOut } from 'redux/auth/auth-operations';
 import { Box } from 'components/Box';
 
-export const UserMenu = () => {
+const UserMenu = () => {
   const dispatch = useDispatch();
   const name = useSelector(selectUsername);
   return (
@@ -15,3 +15,5 @@ export const UserMenu = () => {
     </Box>
   );
 };
+
+export default UserMenu;
