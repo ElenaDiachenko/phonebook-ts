@@ -86,7 +86,7 @@ export const ContactForm = () => {
               <Input type="tel" name="number" />
               <Message name="number" component="span" />
             </Label>
-            <Button type="submit" disabled={isSubmitting} buttonWidth="150">
+            <Button type="submit" disabled={isSubmitting}>
               {!isSubmitting && 'Add contact'}
               {isSubmitting && <ClipLoader color="#ffffff" size={12} />}
             </Button>

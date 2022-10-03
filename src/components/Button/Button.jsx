@@ -1,6 +1,6 @@
 import { ButtonWrap } from './Button.styled';
-export const Button = ({ children, buttonWidth }) => {
+export const Button = ({ children }) => {
   return (
-    <ButtonWrap style={{ width: Number(buttonWidth) }}>{children}</ButtonWrap>
+    <ButtonWrap >{children}</ButtonWrap>
   );
 };

@@ -6,8 +6,7 @@ export const ButtonWrap = styled.button`
   justify-content: center;
   margin: 0 auto;
   cursor: pointer;
-
-  height: 40px;
+  padding: ${p => p.theme.space[3]}px ${p => p.theme.space[4]}px;
   background-color: ${p => p.theme.colors.black};
   color: ${p => p.theme.colors.white};
   font-family: inherit;
