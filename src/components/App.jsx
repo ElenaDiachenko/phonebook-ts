@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, lazy } from 'react';
 import { Loader } from '../components/Loader/Loader';
@@ -64,7 +64,7 @@ export const App = () => {
               }
             />
           </Route>
-          <Route path="*" element={<p>Not Found</p>} />
+          <Route path="*" element={<Navigate to={'/'} />} />
         </Routes>
       )}
     </>
