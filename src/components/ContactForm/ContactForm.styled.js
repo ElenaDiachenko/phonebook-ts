@@ -29,4 +29,3 @@ export const Input = styled(Field)`
     border: ${p => `${p.theme.borders.normal} ${p.theme.colors.black}`};
   }
 `;
-

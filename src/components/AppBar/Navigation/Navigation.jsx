@@ -12,7 +12,7 @@ const Navigation = () => {
     <Nav>
       {width < 768 ? (
         <Link to="/">
-          <MdOutlineContactPhone style={{ width: '20px', height: '20px' }} />
+          <MdOutlineContactPhone style={{ width: '22px', height: '22px' }} />
         </Link>
       ) : (
         <>

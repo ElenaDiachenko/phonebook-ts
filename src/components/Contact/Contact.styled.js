@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+export const ContentWrap = styled.div``;
+export const ButtonstWrap = styled.div`
+  display: flex;
+  gap: ${p => p.theme.space[3]}px; ;
+`;
 export const ContactName = styled.span`
   font-weight: ${p => p.theme.fontWeights.bold};
   color: ${p => p.theme.colors.black};

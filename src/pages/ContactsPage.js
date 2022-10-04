@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchContacts } from 'redux/contacts/operations';
 import { ContactForm } from '../components/ContactForm/ContactForm';
+import { Container } from '../components/Container/Container';
 import { ContactList } from '../components/ContactList/ContactList';
 import { Filter } from '../components/Filter/Filter';
 import { TitleContact } from '../components/App.styled';
@@ -20,13 +21,15 @@ const ContactsPage = () => {
 
   return (
     <main>
-      <ContactForm />
-      <TitleContact>Contacts</TitleContact>
-      <Filter />
-      {isLoading && !error && (
-        <ClipLoader style={{ margin: '0 auto' }} color="#000000" size={32} />
-      )}
-      <ContactList />
+      <Container>
+        <ContactForm />
+        <TitleContact>Contacts</TitleContact>
+        <Filter />
+        {isLoading && !error && (
+          <ClipLoader style={{ margin: '0 auto' }} color="#000000" size={32} />
+        )}
+        <ContactList />
+      </Container>
     </main>
   );
 };
