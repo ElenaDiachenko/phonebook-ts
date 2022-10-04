@@ -1,5 +1,5 @@
 import { Box } from 'components/Box';
-import { RegisterForm } from 'components/RegisterForm/RegisterForm';
+import { RegisterForm } from 'components/Forms/RegisterForm';
 import { Container } from 'components/Container/Container';
 
 const RegisterPage = () => {

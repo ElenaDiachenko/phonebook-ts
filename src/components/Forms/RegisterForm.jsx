@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 import { register } from 'redux/auth/auth-operations';
-import { Button, Label, Input, Message } from './RegisterForm.styled';
+import { Button, Label, Input, Message } from './Form.styled';
 // import { Notify } from 'notiflix';
 // import ClipLoader from 'react-spinners/ClipLoader';
 

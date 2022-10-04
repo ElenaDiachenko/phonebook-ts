@@ -1,6 +1,6 @@
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
-import { Label, Input, Message, Button } from './ContactForm.styled';
+import { Label, Input, Message, Button } from './Form.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contacts/operations';
 import { Notify } from 'notiflix';

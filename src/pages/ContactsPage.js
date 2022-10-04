@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchContacts } from 'redux/contacts/operations';
-import { ContactForm } from '../components/ContactForm/ContactForm';
-import { Container } from '../components/Container/Container';
-import { ContactList } from '../components/ContactList/ContactList';
-import { Filter } from '../components/Filter/Filter';
-import { TitleContact } from '../components/App.styled';
+import { ContactForm } from 'components/Forms/ContactForm';
+import { Container } from 'components/Container/Container';
+import { ContactList } from 'components/ContactList/ContactList';
+import { Filter } from 'components/Filter/Filter';
+import { TitleContact } from 'components/App.styled';
 import { useSelector } from 'react-redux';
 import { selectIsLoading, selectError } from 'redux/contacts/selectors';
 import ClipLoader from 'react-spinners/ClipLoader';
