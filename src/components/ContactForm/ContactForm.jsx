@@ -1,12 +1,11 @@
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
-import { Label, Input, Message } from './ContactForm.styled';
+import { Label, Input, Message, Button } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contacts/operations';
 import { Notify } from 'notiflix';
 import { selectContacts } from 'redux/contacts/selectors';
 import ClipLoader from 'react-spinners/ClipLoader';
-import { Button } from '../Button/Button';
 const schema = yup.object().shape({
   name: yup
     .string()
