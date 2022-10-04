@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 import { register } from 'redux/auth/auth-operations';
-import { Button, Label, Input, Message } from './Form.styled';
+import { Button, Label, Input, Message, Title } from './Form.styled';
 // import { Notify } from 'notiflix';
 // import ClipLoader from 'react-spinners/ClipLoader';
 
@@ -40,36 +40,51 @@ export const RegisterForm = () => {
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={schema}
-      onSubmit={handleSubmit}
-    >
-      {({ isSubmitting }) => {
-        return (
-          <Form>
-            <Label>
-              Name
-              <Input type="text" name="name" />
-              <Message name="name" component="span" />
-            </Label>
-            <Label>
-              E-mail
-              <Input type="email" name="email" />
-              <Message name="email" component="span" />
-            </Label>
+    <>
+      <Title>Sign Up</Title>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={schema}
+        onSubmit={handleSubmit}
+      >
+        {({ isSubmitting }) => {
+          return (
+            <Form>
+              <Label>
+                Name
+                <Input
+                  type="text"
+                  name="name"
+                  placeholder="Enter your username"
+                />
+                <Message name="name" component="span" />
+              </Label>
+              <Label>
+                Email adress
+                <Input
+                  type="email"
+                  name="email"
+                  placeholder="Enter your email adress"
+                />
+                <Message name="email" component="span" />
+              </Label>
 
-            <Label>
-              Password
-              <Input type="password" name="password" />
-              <Message name="password" component="span" />
-            </Label>
-            <Button type="submit" disabled={isSubmitting}>
-              Login
-            </Button>
-          </Form>
-        );
-      }}
-    </Formik>
+              <Label>
+                Password
+                <Input
+                  type="password"
+                  name="password"
+                  placeholder="Enter your password (min 7 symbol)"
+                />
+                <Message name="password" component="span" />
+              </Label>
+              <Button type="submit" disabled={isSubmitting}>
+                Login
+              </Button>
+            </Form>
+          );
+        }}
+      </Formik>
+    </>
   );
 };

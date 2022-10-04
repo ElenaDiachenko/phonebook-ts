@@ -1,6 +1,6 @@
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
-import { Label, Input, Message, Button } from './Form.styled';
+import { Label, Input, Message, Button, Title } from './Form.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contacts/operations';
 import { Notify } from 'notiflix';
@@ -66,32 +66,35 @@ export const ContactForm = () => {
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={schema}
-      onSubmit={handleSubmit}
-    >
-      {({ isSubmitting }) => {
-        return (
-          <Form>
-            <Label>
-              Name
-              <Input type="text" name="name" />
-              <Message name="name" component="span" />
-            </Label>
+    <>
+      <Title>Add new contact</Title>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={schema}
+        onSubmit={handleSubmit}
+      >
+        {({ isSubmitting }) => {
+          return (
+            <Form>
+              <Label>
+                Name
+                <Input type="text" name="name" placeholder="Name..." />
+                <Message name="name" component="span" />
+              </Label>
 
-            <Label>
-              Number
-              <Input type="tel" name="number" />
-              <Message name="number" component="span" />
-            </Label>
-            <Button type="submit" disabled={isSubmitting}>
-              {!isSubmitting && 'Add contact'}
-              {isSubmitting && <ClipLoader color="#ffffff" size={12} />}
-            </Button>
-          </Form>
-        );
-      }}
-    </Formik>
+              <Label>
+                Number
+                <Input type="tel" name="number" placeholder="Phone numer" />
+                <Message name="number" component="span" />
+              </Label>
+              <Button type="submit" disabled={isSubmitting}>
+                {!isSubmitting && 'Add contact'}
+                {isSubmitting && <ClipLoader color="#ffffff" size={12} />}
+              </Button>
+            </Form>
+          );
+        }}
+      </Formik>
+    </>
   );
 };

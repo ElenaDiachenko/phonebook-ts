@@ -1,10 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
-import { Button, Label, Input, Message } from './Form.styled';
+import { Button, Label, Input, Message, Title } from './Form.styled';
 import { logIn } from 'redux/auth/auth-operations';
-// import { Notify } from 'notiflix';
-// import ClipLoader from 'react-spinners/ClipLoader';
 
 const schema = yup.object().shape({
   email: yup
@@ -31,31 +29,42 @@ export const LoginForm = () => {
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={schema}
-      onSubmit={handleSubmit}
-    >
-      {({ isSubmitting }) => {
-        return (
-          <Form>
-            <Label>
-              E-mail
-              <Input type="email" name="email" />
-              <Message name="email" component="span" />
-            </Label>
+    <>
+      <Title>Log In</Title>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={schema}
+        onSubmit={handleSubmit}
+      >
+        {({ isSubmitting }) => {
+          return (
+            <Form>
+              <Label>
+                Email adress
+                <Input
+                  type="email"
+                  name="email"
+                  placeholder="Enter your email adress"
+                />
+                <Message name="email" component="span" />
+              </Label>
 
-            <Label>
-              Password
-              <Input type="password" name="password" />
-              <Message name="password" component="span" />
-            </Label>
-            <Button type="submit" disabled={isSubmitting}>
-              Login
-            </Button>
-          </Form>
-        );
-      }}
-    </Formik>
+              <Label>
+                Password
+                <Input
+                  type="password"
+                  name="password"
+                  placeholder="Enter your password"
+                />
+                <Message name="password" component="span" />
+              </Label>
+              <Button type="submit" disabled={isSubmitting}>
+                LogIn
+              </Button>
+            </Form>
+          );
+        }}
+      </Formik>
+    </>
   );
 };
