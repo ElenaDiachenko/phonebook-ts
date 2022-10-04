@@ -5,16 +5,17 @@ export const ButtonWrap = styled.button`
   align-items: center;
   justify-content: center;
   padding: ${p => p.theme.space[2]}px;
-  background-color: inherit;
-  border: ${p => `${p.theme.borders.normal} ${p.theme.colors.black}`};
+  background-color: ${p => p.theme.colors.white};
+  color: ${p => p.theme.colors.secondary};
+  border: ${p => `${p.theme.borders.normal} ${p.theme.colors.secondary}`};
   border-radius: ${p => p.theme.radii.sm};
   cursor: pointer;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
   :focus {
     color: ${p => p.theme.colors.accent};
-    box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 25%),
-      0px 4px 5px 0px rgb(0 0 0 / 18%), 0px 1px 10px 0px rgb(0 0 0 / 15%);
+    border: ${p => `${p.theme.borders.normal} ${p.theme.colors.accent}`};
   }
 
   > svg {

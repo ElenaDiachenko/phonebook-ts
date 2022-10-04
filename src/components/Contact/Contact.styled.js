@@ -14,7 +14,7 @@ export const ButtonstWrap = styled.div`
 `;
 export const ContactName = styled.p`
   font-weight: ${p => p.theme.fontWeights.bold};
-  color: ${p => p.theme.colors.black};
+  color: ${p => p.theme.colors.primary};
 `;
 
 export const ContactNumber = styled.p`

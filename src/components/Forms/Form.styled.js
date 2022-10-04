@@ -62,9 +62,6 @@ export const Button = styled.button`
   border: ${p => `${p.theme.borders.normal} ${p.theme.colors.accent}`};
   border-radius: ${p => p.theme.radii.sm};
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  margin-bottom: ${p => p.theme.space[4]}px;
-  border-bottom: ${p =>
-    `${p.theme.borders.normal} ${p.theme.colors.secondary}`};
 
   &:hover,
   :focus {
@@ -78,6 +75,6 @@ export const Button = styled.button`
   }
 
   @media screen and (max-width: 768px) {
-    margin-bottom: ${p => p.theme.space[3]}px;
+    height: 40px;
   }
 `;

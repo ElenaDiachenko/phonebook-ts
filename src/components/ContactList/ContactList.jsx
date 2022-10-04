@@ -1,5 +1,5 @@
 import { Box } from '../Box';
-import { ContactItem } from './ContactList.styled';
+import { ContactItem, TitleContact } from './ContactList.styled';
 import { Contact } from 'components/Contact/Contact';
 import { useSelector } from 'react-redux';
 import { selectVisibleContacts } from 'redux/contacts/selectors';
@@ -9,6 +9,7 @@ export const ContactList = () => {
 
   return (
     <Box as="ul" display="flex" flexDirection="column" gridGap={3}>
+      <TitleContact>Contacts</TitleContact>
       {visibleContacts.map(({ id, name, number }) => (
         <ContactItem key={id}>
           <Contact id={id} name={name} number={number} />

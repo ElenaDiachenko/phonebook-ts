@@ -5,7 +5,6 @@ import { ContactForm } from 'components/Forms/ContactForm';
 import { Container } from 'components/Container/Container';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
-import { TitleContact } from 'components/App.styled';
 import { useSelector } from 'react-redux';
 import { selectIsLoading, selectError } from 'redux/contacts/selectors';
 import ClipLoader from 'react-spinners/ClipLoader';
@@ -23,7 +22,7 @@ const ContactsPage = () => {
     <main>
       <Container>
         <ContactForm />
-        <TitleContact>Contacts</TitleContact>
+
         <Filter />
         {isLoading && !error && (
           <ClipLoader style={{ margin: '0 auto' }} color="#000000" size={32} />
