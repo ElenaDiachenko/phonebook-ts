@@ -1,8 +1,9 @@
+import { FaTrashAlt } from 'react-icons/fa';
+import { RiEdit2Line } from 'react-icons/ri';
 import PropTypes from 'prop-types';
 import {
   ContactName,
   ContactNumber,
-  DeleteButton,
   ContentWrap,
   ButtonstWrap,
 } from './Contact.styled';
@@ -12,14 +13,13 @@ import { Modal } from '../Modal/Modal';
 import { ContactEditor } from '../ContactEditor/ContactEditor';
 import { useModal } from 'hooks/useModal';
 import { Box } from 'components/Box';
-// import { selectIsLoading } from 'redux/selectors';
-// import { useSelector } from 'react-redux';
-// import ClipLoader from 'react-spinners/ClipLoader';
+import { Button } from 'components/Button/Button';
 
 export const Contact = ({ name, number, id }) => {
   const dispatch = useDispatch();
   const { isModalOpen, closeModal, openModal } = useModal();
-
+  const handleDelete = () => dispatch(deleteContact(id));
+  const handleOpenModal = () => openModal();
   return (
     <>
       <Box display="flex" alignItems="center" justifyContent="space-between">
@@ -28,10 +28,12 @@ export const Contact = ({ name, number, id }) => {
           <ContactNumber>{number}</ContactNumber>
         </ContentWrap>
         <ButtonstWrap>
-          <DeleteButton onClick={() => dispatch(deleteContact(id))}>
-            Delete
-          </DeleteButton>
-          <DeleteButton onClick={openModal}>Edit</DeleteButton>
+          <Button onClick={handleDelete} aria-label={`Delete ${name}`}>
+            <FaTrashAlt />
+          </Button>
+          <Button onClick={handleOpenModal} aria-label={`Edit ${name}`}>
+            <RiEdit2Line />
+          </Button>
         </ButtonstWrap>
       </Box>
       {isModalOpen && (
