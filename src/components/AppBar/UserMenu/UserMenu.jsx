@@ -1,14 +1,14 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { RiLogoutBoxRLine } from 'react-icons/ri';
-import { selectUsername } from 'redux/auth/auth-selectors';
-import { useWindowResize } from '../../../hooks/useWindowResize';
+import { useAuth } from 'hooks/useAuth';
+import { useWindowResize } from 'hooks/useWindowResize';
 import { logOut } from 'redux/auth/auth-operations';
 import { Button } from 'components/Button/Button';
 import { Wrap, Nav, Content, User } from './UserMenu.styled';
 
 const UserMenu = () => {
   const dispatch = useDispatch();
-  const name = useSelector(selectUsername);
+  const { user } = useAuth();
   const { width } = useWindowResize();
   const handleButtonClick = () => dispatch(logOut());
 
@@ -16,7 +16,7 @@ const UserMenu = () => {
     <Wrap>
       <Nav>
         <Content>Welcome, </Content>
-        <User>{name}</User>
+        <User>{user}</User>
       </Nav>
       {width < 768 ? (
         <Button type="button" onClick={handleButtonClick}>
@@ -25,7 +25,7 @@ const UserMenu = () => {
       ) : (
         <Button type="button" onClick={handleButtonClick}>
           <>
-            <span> LogOut</span> <RiLogoutBoxRLine />
+            <span> Logout</span> <RiLogoutBoxRLine />
           </>
         </Button>
       )}
