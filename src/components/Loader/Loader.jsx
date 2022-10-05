@@ -5,7 +5,7 @@ import { LoaderWrap } from './Loader.styled';
 export const Loader = () => {
   return (
     <LoaderWrap>
-      <ClipLoader color="#3498db" height={100} width={100} />
+      <ClipLoader color="#e5930e" height={200} width={200} />
     </LoaderWrap>
   );
 };

@@ -16,4 +16,7 @@ export const AuthLink = styled(Link)`
   :focus-visible:not(.active) {
     color: ${p => p.theme.colors.accent};
   }
+  @media screen and (max-width: 768px) {
+    padding: ${p => p.theme.space[2]}px;
+  }
 `;

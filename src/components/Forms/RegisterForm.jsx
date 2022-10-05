@@ -79,7 +79,7 @@ export const RegisterForm = () => {
                 <Message name="password" component="span" />
               </Label>
               <Button type="submit" disabled={isSubmitting}>
-                Login
+                SignUp
               </Button>
             </Form>
           );
