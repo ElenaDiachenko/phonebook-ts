@@ -1,6 +1,6 @@
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
-import { Button, Label, Input, Message } from './ContactEditor.styled';
+import { Button, Label, Input, Message } from '../Forms/Form.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { editContact } from 'redux/contacts/operations';
 import { selectContacts } from 'redux/contacts/selectors';
@@ -22,19 +22,6 @@ const schema = yup.object().shape({
       'Phone number is not valid'
     ),
 });
-
-// const options = {
-//   position: 'right-top',
-//   fontSize: '20px',
-//   width: '450px',
-//   borderRadius: '4px',
-//   closeButton: true,
-//   info: {
-//     background: '#000000',
-//     color: '#ffffff',
-//     notiflixIconColor: 'rgba(225,225,225,0.5)',
-//   },
-// };
 
 export const ContactEditor = ({ onClose, id }) => {
   const dispatch = useDispatch();
