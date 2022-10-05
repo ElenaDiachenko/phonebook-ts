@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
-export const Nav = styled.nav`
+export const Nav = styled.ul`
   display: flex;
   gap: ${p => p.theme.space[3]}px;
 `;
 
-export const AuthLink = styled(Link)`
+export const AuthLink = styled(NavLink)`
   padding: ${p => p.theme.space[3]}px;
   color: ${p => p.theme.colors.primary};
   font-weight: ${p => p.theme.fontWeights.medium};

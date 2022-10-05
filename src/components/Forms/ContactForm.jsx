@@ -1,9 +1,11 @@
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
+import { ImPlus } from 'react-icons/im';
 import { Label, Input, Message, Button, Title } from './Form.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contacts/operations';
 import { Notify } from 'notiflix';
+import { useWindowResize } from 'hooks/useWindowResize';
 import { selectContacts } from 'redux/contacts/selectors';
 import ClipLoader from 'react-spinners/ClipLoader';
 const schema = yup.object().shape({
@@ -43,6 +45,7 @@ const options = {
 export const ContactForm = () => {
   const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
+  const { width } = useWindowResize();
 
   const addValidateValues = async values => {
     if (contacts.find(contact => contact.name === values.name)) {
@@ -88,7 +91,14 @@ export const ContactForm = () => {
                 <Message name="number" component="span" />
               </Label>
               <Button type="submit" disabled={isSubmitting}>
-                {!isSubmitting && 'Add contact'}
+                {!isSubmitting &&
+                  (width < 768 ? (
+                    <ImPlus
+                      style={{ width: '25px', height: '25px', color: 'white' }}
+                    />
+                  ) : (
+                    'Add contact'
+                  ))}
                 {isSubmitting && <ClipLoader color="#ffffff" size={12} />}
               </Button>
             </Form>

@@ -1,6 +1,6 @@
 import { useAuth } from 'hooks/useAuth';
 import { StyledLink, Nav } from './Navigation.styled';
-import { useWindowResize } from '../../../hooks/useWindowResize';
+import { useWindowResize } from 'hooks/useWindowResize';
 import { Logo } from '../Logo/Logo';
 
 const Navigation = () => {
