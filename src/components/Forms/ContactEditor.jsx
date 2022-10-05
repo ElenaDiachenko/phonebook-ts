@@ -1,27 +1,11 @@
 import { Formik, Form } from 'formik';
-import * as yup from 'yup';
+import toast from 'react-hot-toast';
 import { Button, Label, Input, Message } from '../Forms/Form.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { editContact } from 'redux/contacts/operations';
 import { selectContacts } from 'redux/contacts/selectors';
 import ClipLoader from 'react-spinners/ClipLoader';
-
-const schema = yup.object().shape({
-  name: yup
-    .string()
-    .required('This field is Required')
-    .matches(
-      /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/,
-      'Name is not valid'
-    ),
-  number: yup
-    .string()
-    .required('This field is Required')
-    .matches(
-      /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/,
-      'Phone number is not valid'
-    ),
-});
+import { schema } from 'helpers/schema';
 
 export const ContactEditor = ({ onClose, id }) => {
   const dispatch = useDispatch();
@@ -36,7 +20,7 @@ export const ContactEditor = ({ onClose, id }) => {
 
   const handleSubmit = async (values, { resetForm, setSubmitting }) => {
     await dispatch(editContact({ id, ...values }));
-
+    toast.success(`Contact edited successfully`);
     onClose();
     setSubmitting(false);
     resetForm();
@@ -66,7 +50,7 @@ export const ContactEditor = ({ onClose, id }) => {
               </Label>
               <Button type="submit" disabled={isSubmitting}>
                 {!isSubmitting && 'Add contact'}
-                {isSubmitting && <ClipLoader color="#ffffff" size={12} />}
+                {isSubmitting && <ClipLoader color="#ffffff" size={16} />}
               </Button>
             </Form>
           );

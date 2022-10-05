@@ -1,5 +1,6 @@
 import { FaTrashAlt } from 'react-icons/fa';
 import { RiEdit2Line } from 'react-icons/ri';
+import toast from 'react-hot-toast';
 import PropTypes from 'prop-types';
 import {
   ContactName,
@@ -18,8 +19,14 @@ import { Button } from 'components/Button/Button';
 export const Contact = ({ name, number, id }) => {
   const dispatch = useDispatch();
   const { isModalOpen, closeModal, openModal } = useModal();
-  const handleDelete = () => dispatch(deleteContact(id));
+
+  const handleDelete = () => {
+    dispatch(deleteContact(id));
+    toast.success(`Contact deleted successfully`);
+  };
+
   const handleOpenModal = () => openModal();
+
   return (
     <>
       <Box display="flex" alignItems="center" justifyContent="space-between">

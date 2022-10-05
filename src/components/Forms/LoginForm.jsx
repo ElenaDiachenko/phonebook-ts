@@ -1,19 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { Formik, Form } from 'formik';
-import * as yup from 'yup';
 import { Button, Label, Input, Message, Title } from './Form.styled';
 import { logIn } from 'redux/auth/auth-operations';
-
-const schema = yup.object().shape({
-  email: yup
-    .string()
-    .email('E-mail is not valid!')
-    .required('E-mail is required!'),
-  password: yup
-    .string()
-    .min(6, 'Password has to be longer than 6 characters!')
-    .required('Password is required!'),
-});
+import { schema } from 'helpers/login-schema';
 
 const initialValues = {
   email: '',
