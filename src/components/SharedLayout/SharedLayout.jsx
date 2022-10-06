@@ -1,31 +1,24 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Toaster } from 'react-hot-toast';
 import AppBar from '../AppBar/AppBar';
 import { Loader } from '../Loader/Loader';
-import { Wrapper, Container } from './SharedLayout.styled';
+import { Wrapper } from './SharedLayout.styled';
+import { Footer } from '../Footer/Footer';
+import { Box } from 'components/Box';
 
 const SharedLayout = () => {
   return (
-    <Wrapper>
-      <Container>
+    <>
+      <Wrapper>
         <AppBar />
-        <Suspense fallback={<Loader />}>
-          <Outlet />
-        </Suspense>
-        <Toaster
-          position="top-right"
-          reverseOrder={false}
-          toastOptions={{
-            duration: 3000,
-            style: {
-              background: '#e5930e',
-              color: '#fff',
-            },
-          }}
-        />
-      </Container>
-    </Wrapper>
+        <Box as="main" display="flex" flexGrow={1} minWidth="100%">
+          <Suspense fallback={<Loader />}>
+            <Outlet />
+          </Suspense>
+        </Box>
+        <Footer />
+      </Wrapper>
+    </>
   );
 };
 

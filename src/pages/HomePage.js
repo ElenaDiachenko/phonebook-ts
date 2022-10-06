@@ -1,28 +1,29 @@
-import React from 'react';
-
-const styles = {
-  container: {
-    minHeight: 'calc(100vh - 50px)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontWeight: 500,
-    fontSize: 48,
-    textAlign: 'center',
-  },
-};
+import { MdOutlineContactPhone } from 'react-icons/md';
+import { Box } from 'components/Box';
+import { Message } from 'components/Message/Message';
+import { Container } from 'components/Container/Container';
 
 const HomePage = () => (
-  <div style={styles.container}>
-    <h1 style={styles.title}>
-      Приветственная страница нашего сервиса
-      <span role="img" aria-label="Иконка приветствия">
-        💁
-      </span>
-    </h1>
-  </div>
+  <Container>
+    <Box display="flex" alignItems="center" gridGap={40}>
+      <Box width="calc(50%)">
+        <MdOutlineContactPhone
+          style={{ width: '100%', height: 'auto', color: '#e5930e' }}
+        />
+      </Box>
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        flexGrow={1}
+      >
+        <Message>HELLO</Message>
+      </Box>
+    </Box>
+  </Container>
 );
 
 export default HomePage;
+
+// box-shadow: 0 14px 28px rgba(255, 255, 255, 0.25),
+//     0 10px 10px rgba(255, 255, 255, 0.22);
