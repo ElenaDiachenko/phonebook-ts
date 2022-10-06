@@ -8,6 +8,7 @@ import { Filter } from 'components/Filter/Filter';
 import { useSelector } from 'react-redux';
 import { selectIsLoading, selectError } from 'redux/contacts/selectors';
 import ClipLoader from 'react-spinners/ClipLoader';
+import { Box } from 'components/Box';
 
 const ContactsPage = () => {
   const isLoading = useSelector(selectIsLoading);
@@ -21,13 +22,19 @@ const ContactsPage = () => {
   return (
     <main>
       <Container>
-        <ContactForm />
+        <Box ml="auto" mr="auto" width="100%" maxWidth={800}>
+          <ContactForm />
 
-        <Filter />
-        {isLoading && !error && (
-          <ClipLoader style={{ margin: '0 auto' }} color="#000000" size={32} />
-        )}
-        <ContactList />
+          <Filter />
+          {isLoading && !error && (
+            <ClipLoader
+              style={{ margin: '0 auto' }}
+              color="#000000"
+              size={32}
+            />
+          )}
+          <ContactList />
+        </Box>
       </Container>
     </main>
   );
