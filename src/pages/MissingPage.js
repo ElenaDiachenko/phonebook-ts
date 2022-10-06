@@ -1,17 +1,18 @@
 import { Link } from 'react-router-dom';
 import { Box } from 'components/Box';
 import { Message } from 'components/Message/Message';
+import { Container } from 'components/Container/Container';
 
 const MissingPage = () => {
   return (
-    <Box display="flex" flex-direction="column" gridGap={3}>
-      <Message>Page Not Found</Message>
-      <Box display="flex" alignItems="center" mr={10}>
+    <Container>
+      <Box display="flex" flexDirection="column" gridGap={3}>
+        <Message>Page Not Found</Message>
         <Message>
           <Link to="/">Visit Our Homepage</Link>
         </Message>
       </Box>
-    </Box>
+    </Container>
   );
 };
 

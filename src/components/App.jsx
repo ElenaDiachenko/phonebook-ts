@@ -11,6 +11,7 @@ import SharedLayout from '../components/SharedLayout/SharedLayout';
 
 const HomePage = lazy(() => import('pages/HomePage'));
 const ContactsPage = lazy(() => import('pages/ContactsPage'));
+const AddContactPage = lazy(() => import('pages/AddContactPage'));
 const LoginPage = lazy(() => import('pages/LoginPage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage'));
 const MissingPage = lazy(() => import('pages/MissingPage'));
@@ -32,7 +33,7 @@ export const App = () => {
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<HomePage />} />
             <Route
-              path="/register"
+              path="register"
               element={
                 <RestrictedRoute
                   redirectTo="/contacts"
@@ -41,7 +42,7 @@ export const App = () => {
               }
             />
             <Route
-              path="/login"
+              path="login"
               element={
                 <RestrictedRoute
                   redirectTo="/contacts"
@@ -49,8 +50,9 @@ export const App = () => {
                 />
               }
             />
+
             <Route
-              path="/contacts"
+              path="contacts/*"
               element={
                 <PrivateRoute
                   redirectTo="/login"
@@ -58,8 +60,9 @@ export const App = () => {
                 />
               }
             />
+            <Route path="newContact" element={<AddContactPage />} />
+            <Route path="*" element={<MissingPage />} />
           </Route>
-          <Route path="*" element={<MissingPage />} />
         </Routes>
       )}
       <Toaster

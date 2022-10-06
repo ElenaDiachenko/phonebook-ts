@@ -11,7 +11,13 @@ const SharedLayout = () => {
     <>
       <Wrapper>
         <AppBar />
-        <Box as="main" display="flex" flexGrow={1} minWidth="100%">
+        <Box
+          as="main"
+          display="flex"
+          flexDirection="column"
+          flexGrow={1}
+          minWidth="100%"
+        >
           <Suspense fallback={<Loader />}>
             <Outlet />
           </Suspense>

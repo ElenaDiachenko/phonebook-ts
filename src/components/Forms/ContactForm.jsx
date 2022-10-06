@@ -64,13 +64,7 @@ export const ContactForm = () => {
               </Label>
               <Button type="submit" disabled={isSubmitting}>
                 {!isSubmitting &&
-                  (width < 768 ? (
-                    <ImPlus
-                      style={{ width: '25px', height: '25px', color: 'white' }}
-                    />
-                  ) : (
-                    'Add contact'
-                  ))}
+                  (width < 768 ? <ImPlus size={20} /> : 'Add contact')}
                 {isSubmitting && <ClipLoader color="#ffffff" size={16} />}
               </Button>
             </Form>

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ButtonWrap = styled.button`
+export const StyledBtn = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,5 +21,10 @@ export const ButtonWrap = styled.button`
   > svg {
     width: 25px;
     height: 25px;
+
+    @media screen and (max-width: 768px) {
+      width: 22px;
+      height: 22px;
+    }
   }
 `;

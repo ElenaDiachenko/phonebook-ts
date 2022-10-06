@@ -13,9 +13,7 @@ export const PageContainer = styled.div`
     width: 768px;
   }
 
-  @media screen and (min-width: 1200px) {
-    width: 1200px;
+  @media screen and (min-width: 900px) {
+    width: 900px;
   }
 `;
-// max-width: 800px;
-// margin: 0 auto;
