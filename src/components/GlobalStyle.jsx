@@ -7,7 +7,7 @@ export const GlobalStyle = createGlobalStyle`
 }
 body {
   margin: 0;
-  background-color:#0e0800;
+  background-color:#5f6369;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;

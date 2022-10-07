@@ -5,13 +5,14 @@ export const Label = styled.label`
   flex-direction: column;
   font-weight: ${p => p.theme.fontWeights.bold};
   color: ${p => p.theme.colors.text};
-  margin: ${p => p.theme.space[5]}px 0;
-  padding-top: ${p => p.theme.space[5]}px;
-  border-top: ${p => `${p.theme.borders.normal} ${p.theme.colors.secondary}`};
+  margin-bottom: ${p => p.theme.space[5]}px ;
+  padding-bottom: ${p => p.theme.space[5]}px;
+  border-bottom: ${p =>
+    `${p.theme.borders.normal} ${p.theme.colors.secondary}`};
 
   @media screen and (max-width: 768px) {
-    padding-top: ${p => p.theme.space[4]}px;
-    margin: ${p => p.theme.space[4]}px 0;
+    padding-bottom: ${p => p.theme.space[4]}px;
+    margin-bottom: ${p => p.theme.space[4]}px ;
   }
 `;
 

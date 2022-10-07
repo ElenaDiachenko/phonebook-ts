@@ -8,15 +8,11 @@ import { useSelector } from 'react-redux';
 import { selectIsLoading, selectError } from 'redux/contacts/selectors';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { Outlet } from 'react-router-dom';
-import { NavigateButton } from 'components/NavigateButton/NavigateButton';
-import { useWindowResize } from 'hooks/useWindowResize';
-import { ImPlus } from 'react-icons/im';
 
 const ContactsPage = () => {
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
   const dispatch = useDispatch();
-  const { width } = useWindowResize();
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -24,9 +20,6 @@ const ContactsPage = () => {
 
   return (
     <Container>
-      <NavigateButton path="/newContact">
-        {width < 768 ? <ImPlus size={20} /> : 'Add contact'}
-      </NavigateButton>
       <Outlet />
       <Filter />
       {isLoading && !error && (

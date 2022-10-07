@@ -10,6 +10,6 @@ export const HeaderWrap = styled.header`
 
   @media screen and (max-width: 768px) {
     max-height: 80px;
-    margin-bottom: ${p => p.theme.space[3]}px;
+    margin-bottom: 16px;
   }
 `;

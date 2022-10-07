@@ -6,7 +6,7 @@ export const Button = styled(Link)`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  width: 10%;
+  width: 40px;
   height: 40px;
   background-color: ${p => p.theme.colors.accent};
   color: ${p => p.theme.colors.white};
@@ -24,6 +24,7 @@ export const Button = styled(Link)`
   }
 
   @media screen and (max-width: 768px) {
+    width: 35px;
     height: 35px;
   }
 `;
