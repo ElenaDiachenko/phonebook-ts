@@ -4,7 +4,7 @@ export const StyledCarousel = styled.div`
   position: relative;
   margin: 0 auto;
   overflow: hidden;
-  max-width: 400px;
+  max-width: 900px;
 `;
 
 export const CarouselWrap = styled.div`
@@ -15,9 +15,16 @@ export const CarouselWrap = styled.div`
 export const Card = styled.div`
   display: inline-block;
   width: 100%;
+  height: 600px;
+
+  @media screen and (max-width: 768px) {
+    height: 400px;
+  }
 `;
 
 export const Image = styled.img`
+  height: 100%;
+  display: block;
   width: 100%;
   object-fit: cover;
 `;
@@ -39,7 +46,7 @@ export const Title = styled.h3`
 
 export const Controls = styled.div``;
 
-const Arrow = styled.button`
+const Arrows = styled.button`
   background-color: rgba(0, 0, 0, 0.5);
   border: none;
   display: inline-block;
@@ -49,13 +56,19 @@ const Arrow = styled.button`
   top: calc(50% - 25px);
   color: #f3f3f3;
   cursor: pointer;
+
+  @media screen and (max-width: 768px) {
+    height: 40px;
+    width: 50px;
+    top: calc(50% - 20px);
+  }
 `;
 
-export const ArrowLeft = styled(Arrow)`
+export const ArrowLeft = styled(Arrows)`
   left: 0;
 `;
 
-export const ArrowRight = styled(Arrow)`
+export const ArrowRight = styled(Arrows)`
   right: 0;
 `;
 

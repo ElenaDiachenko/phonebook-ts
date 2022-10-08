@@ -3,6 +3,7 @@ import {
   StyledCarousel,
   CarouselWrap,
   Card,
+  Image,
   ArrowLeft,
   ArrowRight,
 } from './Carousel.styled';
@@ -40,7 +41,7 @@ export const Carousel = ({ images }) => {
     startSlideTimer();
 
     return () => stopSlideTimer();
-  }, []);
+  });
 
   return (
     <StyledCarousel>
@@ -52,7 +53,7 @@ export const Carousel = ({ images }) => {
               onMouseEnter={stopSlideTimer}
               onMouseOut={startSlideTimer}
             >
-              <img src={image.webformatURL} alt={image.tags} />
+              <Image src={image.webformatURL} alt={image.tags} />
             </Card>
           );
         })}
