@@ -10,7 +10,7 @@ export const fetchImages = async query => {
     q: query,
     image_type: 'photo',
     orientation: 'horizontal',
-    per_page: 3,
+    per_page: 20,
   });
   const res = await PixabayAPI.get(`/api/?${searchParams}`);
   return res.data.hits;
