@@ -1,5 +1,7 @@
 import { Formik, Form } from 'formik';
 import toast from 'react-hot-toast';
+import { RiEdit2Line } from 'react-icons/ri';
+import { useWindowResize } from 'hooks/useWindowResize';
 import { Button, Label, Input, Message } from '../Forms/Form.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { editContact } from 'redux/contacts/operations';
@@ -11,7 +13,7 @@ export const ContactEditor = ({ onClose, id }) => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
   const currentContact = contacts.find(contact => contact.id === id);
-  console.log(currentContact.name);
+  const { width } = useWindowResize();
 
   const initialValues = {
     name: currentContact.name,
@@ -49,7 +51,8 @@ export const ContactEditor = ({ onClose, id }) => {
                 <Message name="number" component="span" />
               </Label>
               <Button type="submit" disabled={isSubmitting}>
-                {!isSubmitting && 'Add contact'}
+                {!isSubmitting &&
+                  (width < 768 ? <RiEdit2Line size={20} /> : 'Edit contact')}
                 {isSubmitting && <ClipLoader color="#ffffff" size={16} />}
               </Button>
             </Form>
