@@ -18,3 +18,14 @@ export const FooterWrap = styled.footer`
     margin-top: ${p => p.theme.space[3]}px;
   }
 `;
+export const Content = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: ${p => p.theme.space[4]}px;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    gap: ${p => p.theme.space[3]}px;
+  }
+`;
