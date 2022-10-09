@@ -19,7 +19,7 @@ export const CarouselWrap = styled.div`
 export const Card = styled.div`
   display: inline-block;
   width: 100%;
-  height: 80vh;
+  height: 75vh;
 
   @media screen and (max-width: 768px) {
     height: 50vh;
@@ -43,7 +43,7 @@ export const Overlay = styled.div`
   align-items: center;
   padding-left: ${p => p.theme.space[4]}px;
   color: #f3f3f3;
-  border-botton: transparent;
+  border: transparent;
   border-bottom-right-radius: ${p => p.theme.radii.sm};
   border-bottom-left-radius: ${p => p.theme.radii.sm};
 
