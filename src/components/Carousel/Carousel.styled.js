@@ -43,6 +43,8 @@ export const Overlay = styled.div`
   align-items: center;
   padding-left: ${p => p.theme.space[4]}px;
   color: #f3f3f3;
+  border-botton: transparent;
+  border-radius: ${p => p.theme.radii.sm};
 
   @media screen and (max-width: 768px) {
     height: 40px;
@@ -71,7 +73,7 @@ const Arrows = styled.button`
   color: #f3f3f3;
   cursor: pointer;
   order: ${p => `${p.theme.borders.normal} transparent`};
-  border-radius: ${p => p.theme.radii.sm};
+
   @media screen and (max-width: 768px) {
     height: 40px;
     width: 50px;

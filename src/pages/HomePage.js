@@ -4,10 +4,10 @@ import { Box } from 'components/Box';
 import { Container } from 'components/Container/Container';
 import { HomeTitle } from 'components/HomeTitle/HomeTitle';
 import { Carousel } from 'components/Carousel/Carousel';
-import { useCurrentMonth } from 'hooks/useCurrentMonth';
+import { useDate } from 'hooks/useDate';
 
 const HomePage = () => {
-  const currentMonth = useCurrentMonth();
+  const { currentMonth } = useDate();
   const [images, setImages] = useState([]);
 
   useEffect(() => {

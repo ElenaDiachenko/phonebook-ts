@@ -1,10 +1,12 @@
+import { useDate } from 'hooks/useDate';
 import { FooterWrap } from './Footer.styled';
 
 export const Footer = () => {
-  const today = new Date();
+  const { fullDate } = useDate();
   return (
     <FooterWrap>
-      <p>{today.getFullYear()}</p>
+      <p>Today's date is {fullDate}</p>
+      <p>Don't waste time - call</p>
     </FooterWrap>
   );
 };
