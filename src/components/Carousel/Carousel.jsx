@@ -4,11 +4,13 @@ import {
   CarouselWrap,
   Card,
   Image,
+  Overlay,
+  Title,
   ArrowLeft,
   ArrowRight,
 } from './Carousel.styled';
 
-export const Carousel = ({ images }) => {
+export const Carousel = ({ images, title }) => {
   const [current, setCurrent] = useState(0);
   const slideInterval = useRef();
 
@@ -62,6 +64,9 @@ export const Carousel = ({ images }) => {
         <ArrowLeft onClick={prev}>Prev</ArrowLeft>
         <ArrowRight onClick={next}>Next</ArrowRight>
       </div>
+      <Overlay>
+        <Title>{title}</Title>
+      </Overlay>
     </StyledCarousel>
   );
 };

@@ -5,11 +5,15 @@ export const StyledCarousel = styled.div`
   margin: 0 auto;
   overflow: hidden;
   max-width: 900px;
+  border: ${p => `${p.theme.borders.normal} transparent`};
+  border-radius: ${p => p.theme.radii.sm};
+  box-shadow: 0 14px 28px rgba(255, 255, 255, 0.25),
+    0 10px 10px rgba(255, 255, 255, 0.22);
 `;
 
 export const CarouselWrap = styled.div`
   white-space: nowrap;
-  transition: ease 1s;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
 export const Card = styled.div`
@@ -31,20 +35,30 @@ export const Image = styled.img`
 
 export const Overlay = styled.div`
   position: absolute;
+  bottom: 0;
   width: 100%;
-  height: 100%;
+  height: 50px;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
-  padding: 20px 15px;
-  align-items: flex-end;
+  align-items: center;
+  padding-left: ${p => p.theme.space[4]}px;
+  color: #f3f3f3;
+
+  @media screen and (max-width: 768px) {
+    height: 40px;
+  }
 `;
 
-export const Title = styled.h3`
-  color: white;
-  font-size: 30px;
-`;
+export const Title = styled.p`
+  color: ${p => p.theme.colors.white};
+  font-family: inherit;
+  font-size: ${p => p.theme.fontSizes.m};
+  font-weight: ${p => p.theme.fontWeights.bold};
 
-export const Controls = styled.div``;
+  @media screen and (max-width: 768px) {
+    font-size: ${p => p.theme.fontSizes.xs};
+  }
+`;
 
 const Arrows = styled.button`
   background-color: rgba(0, 0, 0, 0.5);
@@ -56,7 +70,8 @@ const Arrows = styled.button`
   top: calc(50% - 25px);
   color: #f3f3f3;
   cursor: pointer;
-
+  order: ${p => `${p.theme.borders.normal} transparent`};
+  border-radius: ${p => p.theme.radii.sm};
   @media screen and (max-width: 768px) {
     height: 40px;
     width: 50px;
@@ -70,28 +85,4 @@ export const ArrowLeft = styled(Arrows)`
 
 export const ArrowRight = styled(Arrows)`
   right: 0;
-`;
-
-export const Pagination = styled.div`
-  position: absolute;
-  bottom: 5px;
-  left: 50%;
-  transform: translate(-50%, 0);
-`;
-
-export const Dot = styled.div`
-  height: 10px;
-  width: 10px;
-  background-color: #f5f5f5;
-  border-radius: 50%;
-  display: inline-block;
-  margin-left: 10px;
-  cursor: pointer;
-
-  &:hover {
-    transform: scale(1.2);
-  }
-  :active {
-    background-color: steelblue;
-  }
 `;

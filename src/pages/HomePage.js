@@ -32,7 +32,9 @@ const HomePage = () => {
           </HomeTitle>
         </Box>
         <Box display="flex" justifyContent="center" alignItems="center">
-          {images.length > 0 && <Carousel images={images} />}
+          {images.length > 0 && (
+            <Carousel images={images} title={currentMonth} />
+          )}
         </Box>
       </Box>
     </Container>
@@ -40,21 +42,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-
-// box-shadow: 0 14px 28px rgba(255, 255, 255, 0.25),
-//     0 10px 10px rgba(255, 255, 255, 0.22);
-
-// <Box display="flex" alignItems="center" gridGap={30}>
-//   <Box width="calc(60%)">
-//     {/* <img src={images[0].webformatURL} alt={images[0].tags} /> */}
-//     {images.length > 0 && <Carousel images={images} />}
-//   </Box>
-//   <Box
-//     display="flex"
-//     justifyContent="center"
-//     alignItems="center"
-//     flexGrow={1}
-//   >
-//     <Message>HELLO</Message>
-//   </Box>
-// </Box>
