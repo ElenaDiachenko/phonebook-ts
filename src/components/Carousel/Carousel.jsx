@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState, useEffect, useRef } from 'react';
 import {
   StyledCarousel,
@@ -69,4 +70,9 @@ export const Carousel = ({ images, title }) => {
       </Overlay>
     </StyledCarousel>
   );
+};
+
+Carousel.propTypes = {
+  images: PropTypes.arrayOf(PropTypes.object).isRequired,
+  title: PropTypes.string.isRequired,
 };
