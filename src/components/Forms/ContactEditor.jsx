@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Formik, Form } from 'formik';
 import toast from 'react-hot-toast';
 import { RiEdit2Line } from 'react-icons/ri';
@@ -61,4 +62,9 @@ export const ContactEditor = ({ onClose, id }) => {
       </Formik>
     </>
   );
+};
+
+ContactEditor.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
 };
