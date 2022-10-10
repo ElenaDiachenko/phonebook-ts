@@ -6,5 +6,6 @@ export const NavigateButton = ({ children, path }) => {
 };
 
 NavigateButton.prototype = {
-  children: propTypes.node,
+  children: propTypes.element.isRequired,
+  path: propTypes.string.isRequired,
 };
