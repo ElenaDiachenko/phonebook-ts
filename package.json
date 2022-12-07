@@ -1,8 +1,8 @@
 {
-  "name": "goit-react-hw-08-phonebook",
+  "name": "phonebook-ts",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://ElenaDiachenko.github.io/goit-react-hw-08-phonebook/",
+  "homepage": "https://ElenaDiachenko.github.io/phonebook-ts/",
   "dependencies": {
     "@redux-devtools/extension": "^3.2.3",
     "@reduxjs/toolkit": "^1.8.5",
