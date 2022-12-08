@@ -1,13 +1,14 @@
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import { RiLogoutBoxRLine } from 'react-icons/ri';
 import { useAuth } from 'hooks/useAuth';
 import { useWindowResize } from 'hooks/useWindowResize';
 import { logOut } from 'redux/auth/auth-operations';
 import { Button } from 'components/Button/Button';
 import { Wrap, Nav, Content, User } from './UserMenu.styled';
+import { useAppDispatch } from 'redux/hooks';
 
 const UserMenu = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { user } = useAuth();
   const { width } = useWindowResize();
   const handleButtonClick = () => dispatch(logOut());
