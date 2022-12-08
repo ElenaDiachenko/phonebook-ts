@@ -2,26 +2,19 @@ import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import AppBar from '../AppBar/AppBar';
 import { Loader } from '../Loader/Loader';
-import { Wrapper } from './SharedLayout.styled';
+import { Wrapper, StyledMain } from './SharedLayout.styled';
 import { Footer } from '../Footer/Footer';
-import { Box } from 'components/Box';
 
 const SharedLayout = () => {
   return (
     <>
       <Wrapper>
         <AppBar />
-        <Box
-          as="main"
-          display="flex"
-          flexDirection="column"
-          flexGrow={1}
-          minWidth="100%"
-        >
+        <StyledMain>
           <Suspense fallback={<Loader />}>
             <Outlet />
           </Suspense>
-        </Box>
+        </StyledMain>
         <Footer />
       </Wrapper>
     </>

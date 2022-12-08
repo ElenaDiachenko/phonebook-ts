@@ -8,3 +8,10 @@ export const Wrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
 `;
+
+export const StyledMain = styled.main`
+  display: flex;
+  flex-direction: column;
+  min-width: 100%;
+  flex-grow: 1;
+`;
