@@ -17,7 +17,7 @@ const RegisterPage = lazy(() => import('pages/RegisterPage'));
 const MissingPage = lazy(() => import('pages/MissingPage'));
 
 export const App = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
   const { isRefreshing } = useAuth();
 
   useEffect(() => {

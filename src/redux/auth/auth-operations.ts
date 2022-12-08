@@ -1,47 +1,63 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { contactToken, contactsAxios } from 'servises/ContactsAPI';
+import {
+  IRegisterCredentials,
+  ILoginCredentials,
+} from 'interfaces/ICredentials';
 
 const token = contactToken;
 const ContactsAPI = contactsAxios;
 
 export const register = createAsyncThunk(
   'auth/register',
-  async (credentials, thunkAPI) => {
+  async (credentials: IRegisterCredentials, { rejectWithValue }: any) => {
     try {
       const { data } = await ContactsAPI.post('/users/signup', credentials);
       token.set(data.token);
       return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+    } catch (error: unknown) {
+      if (error === typeof Error) {
+        return rejectWithValue(error);
+      }
+      throw new Error('error');
     }
   }
 );
 
 export const logIn = createAsyncThunk(
   'auth/logIn',
-  async (credentials, thunkAPI) => {
+  async (credentials: ILoginCredentials, { rejectWithValue }: any) => {
     try {
       const { data } = await ContactsAPI.post('/users/login', credentials);
       token.set(data.token);
       return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+    } catch (error: unknown) {
+      if (error === typeof Error) {
+        return rejectWithValue(error);
+      }
+      throw new Error('error');
     }
   }
 );
 
-export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
-  try {
-    await ContactsAPI.post('/users/logout');
-    token.unset();
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+export const logOut = createAsyncThunk(
+  'auth/logout',
+  async (_, { rejectWithValue }: any) => {
+    try {
+      await ContactsAPI.post('/users/logout');
+      token.unset();
+    } catch (error: unknown) {
+      if (error === typeof Error) {
+        return rejectWithValue(error);
+      }
+      throw new Error('error');
+    }
   }
-});
+);
 
 export const fetchCurrentUser = createAsyncThunk(
   'auth/refresh',
-  async (_, thunkAPI) => {
+  async (_, thunkAPI: any) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
 
@@ -54,8 +70,11 @@ export const fetchCurrentUser = createAsyncThunk(
     try {
       const { data } = await ContactsAPI.get('/users/current');
       return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+    } catch (error: unknown) {
+      if (error === typeof Error) {
+        return thunkAPI.rejectWithValue(error);
+      }
+      throw new Error('error');
     }
   }
 );

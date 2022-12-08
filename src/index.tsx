@@ -9,13 +9,13 @@ import { theme } from './theme';
 import { Provider } from 'react-redux';
 import { store, persistor } from './redux/store';
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <GlobalStyle />
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <PersistGate loading={null} persistor={persistor}>
-          <BrowserRouter basename="/goit-react-hw-08-phonebook">
+          <BrowserRouter>
             <App />
           </BrowserRouter>
         </PersistGate>

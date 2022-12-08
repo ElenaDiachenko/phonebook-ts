@@ -22,7 +22,10 @@ const authPersistConfig = {
 
 export const store = configureStore({
   reducer: {
-    auth: persistReducer(authPersistConfig, authReducer),
+    auth: persistReducer<ReturnType<typeof authReducer>>(
+      authPersistConfig,
+      authReducer
+    ),
     contacts: contactsReducer,
     filters: filtersReducer,
   },
@@ -36,4 +39,10 @@ export const store = configureStore({
   devTools: process.env.NODE_ENV !== 'production',
 });
 
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+
+// export type RootState = ReturnType<typeof store.getState>;
+// export type AppDispatch = typeof store.dispatch;
+// export const useAppDispatch: () => AppDispatch = useDispatch;
 export const persistor = persistStore(store);
