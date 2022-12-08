@@ -1,5 +1,5 @@
 import { useDate } from 'hooks/useDate';
-import { FooterWrap,Content } from './Footer.styled';
+import { FooterWrap, Content } from './Footer.styled';
 
 export const Footer = () => {
   const { fullDate } = useDate();
