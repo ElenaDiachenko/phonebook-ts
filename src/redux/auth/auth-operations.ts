@@ -15,11 +15,12 @@ export const register = createAsyncThunk(
       const { data } = await ContactsAPI.post('/users/signup', credentials);
       token.set(data.token);
       return data;
-    } catch (error: unknown) {
-      if (error === typeof Error) {
-        return rejectWithValue(error);
+    } catch (err) {
+      if (err instanceof Error) {
+        return rejectWithValue(err);
+      } else {
+        console.log('Unexpected error', err);
       }
-      throw new Error('error');
     }
   }
 );
@@ -31,11 +32,12 @@ export const logIn = createAsyncThunk(
       const { data } = await ContactsAPI.post('/users/login', credentials);
       token.set(data.token);
       return data;
-    } catch (error: unknown) {
-      if (error === typeof Error) {
-        return rejectWithValue(error);
+    } catch (err) {
+      if (err instanceof Error) {
+        return rejectWithValue(err);
+      } else {
+        console.log('Unexpected error', err);
       }
-      throw new Error('error');
     }
   }
 );
@@ -46,11 +48,12 @@ export const logOut = createAsyncThunk(
     try {
       await ContactsAPI.post('/users/logout');
       token.unset();
-    } catch (error: unknown) {
-      if (error === typeof Error) {
-        return rejectWithValue(error);
+    } catch (err) {
+      if (err instanceof Error) {
+        return rejectWithValue(err);
+      } else {
+        console.log('Unexpected error', err);
       }
-      throw new Error('error');
     }
   }
 );
@@ -70,11 +73,12 @@ export const fetchCurrentUser = createAsyncThunk(
     try {
       const { data } = await ContactsAPI.get('/users/current');
       return data;
-    } catch (error: unknown) {
-      if (error === typeof Error) {
-        return thunkAPI.rejectWithValue(error);
+    } catch (err) {
+      if (err instanceof Error) {
+        return thunkAPI.rejectWithValue(err);
+      } else {
+        console.log('Unexpected error', err);
       }
-      throw new Error('error');
     }
   }
 );

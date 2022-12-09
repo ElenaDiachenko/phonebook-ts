@@ -6,18 +6,23 @@ import { Container } from 'components/Container/Container';
 import { HomeTitle } from 'components/HomeTitle/HomeTitle';
 import { Carousel } from 'components/Carousel/Carousel';
 import photo from 'images/photo.jpg';
+import { IImage } from 'interfaces/IImage';
 
 const HomePage = () => {
   const { currentMonth } = useDate();
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState<IImage[]>([]);
 
   useEffect(() => {
     (async () => {
       try {
         const sliderImages = await fetchImages(`${currentMonth} nature`);
         setImages([...sliderImages]);
-      } catch (error) {
-        console.log(error.message);
+      } catch (err) {
+        if (err instanceof Error) {
+          console.log(err.message);
+        } else {
+          console.log('Unexpected error', err);
+        }
       }
     })();
   }, [currentMonth]);
@@ -27,9 +32,12 @@ const HomePage = () => {
       <Box display="flex" flexDirection="column" gridGap={30}>
         <Box>
           <HomeTitle>
-            Welcome to the PhoneBook app for saving personal phone contacts.
-            <br />
-            Please register to use.
+            <>
+              <span>
+                Welcome to the PhoneBook app for saving personal phone contacts.
+              </span>{' '}
+              <span> Please register to use.</span>
+            </>
           </HomeTitle>
         </Box>
         <Box display="flex" justifyContent="center" alignItems="center">

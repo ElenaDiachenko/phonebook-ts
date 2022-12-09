@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, FC } from 'react';
+import { IImage } from 'interfaces/IImage';
 import {
   StyledCarousel,
   CarouselWrap,
@@ -11,9 +11,14 @@ import {
   ArrowRight,
 } from './Carousel.styled';
 
-export const Carousel = ({ images, title }) => {
+interface IProps {
+  images: IImage[];
+  title: string;
+}
+
+export const Carousel: FC<IProps> = ({ images, title }) => {
   const [current, setCurrent] = useState(0);
-  const slideInterval = useRef();
+  const slideInterval = useRef<any>(null);
 
   const prev = () => {
     startSlideTimer();
@@ -70,9 +75,4 @@ export const Carousel = ({ images, title }) => {
       </Overlay>
     </StyledCarousel>
   );
-};
-
-Carousel.propTypes = {
-  images: PropTypes.arrayOf(PropTypes.object).isRequired,
-  title: PropTypes.string.isRequired,
 };
