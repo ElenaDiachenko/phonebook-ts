@@ -32,12 +32,13 @@ const HomePage = () => {
       <Box display="flex" flexDirection="column" gridGap={30}>
         <Box>
           <HomeTitle>
-            <>
-              <span>
+            <Box display="flex" flexDirection="column" gridGap={14}>
+              <p>
                 Welcome to the PhoneBook app for saving personal phone contacts.
-              </span>{' '}
-              <span> Please register to use.</span>
-            </>
+              </p>
+
+              <p> Please register to use.</p>
+            </Box>
           </HomeTitle>
         </Box>
         <Box display="flex" justifyContent="center" alignItems="center">

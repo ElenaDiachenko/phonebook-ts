@@ -2,12 +2,12 @@ import { Route, Routes } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { useEffect, lazy } from 'react';
-import { Loader } from '../components/Loader/Loader';
-import { useAuth } from '../hooks/useAuth';
-import { fetchCurrentUser } from '../redux/auth/auth-operations';
-import { PrivateRoute } from '../components/PrivateRoute/PrivateRoute';
-import { RestrictedRoute } from '../components/RestrictedRoute/RestrictedRoute';
-import SharedLayout from '../components/SharedLayout/SharedLayout';
+import { Loader } from 'components/Loader/Loader';
+import { useAuth } from 'hooks/useAuth';
+import { fetchCurrentUser } from 'redux/auth/auth-operations';
+import { PrivateRoute } from 'components/PrivateRoute/PrivateRoute';
+import { RestrictedRoute } from 'components/RestrictedRoute/RestrictedRoute';
+import SharedLayout from 'components/SharedLayout/SharedLayout';
 
 const HomePage = lazy(() => import('pages/HomePage'));
 const ContactsPage = lazy(() => import('pages/ContactsPage'));
