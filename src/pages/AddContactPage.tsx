@@ -11,12 +11,12 @@ const AddContactsPage = () => {
 
   return (
     <Container>
-      <Box mb={16}>
-        <NavigateButton path={backLinkHref}>
-          <FaLongArrowAltLeft />
-        </NavigateButton>
-      </Box>
-      <ContactForm />
+        <Box mb={16}>
+          <NavigateButton path={backLinkHref}>
+            <FaLongArrowAltLeft />
+          </NavigateButton>
+        </Box>
+        <ContactForm />
     </Container>
   );
 };

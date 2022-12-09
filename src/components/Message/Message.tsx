@@ -1,10 +1,9 @@
-import {FC} from 'react';
+import { FC, ReactNode } from 'react';
 import { StyledMessage } from './Message.styled';
 
-interface IProps{
-  children:React.ReactElement
+interface IProps {
+  children: ReactNode;
 }
-export const Message:FC<IProps> = ({ children }) => {
+export const Message: FC<IProps> = ({ children }) => {
   return <StyledMessage>{children}</StyledMessage>;
 };
-

@@ -1,8 +1,8 @@
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 import { Button } from './NavigateButton.styled';
 
 interface IProps {
-  children: React.ReactElement;
+  children: ReactNode;
   path: string;
 }
 

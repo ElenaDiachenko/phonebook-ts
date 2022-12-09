@@ -1,8 +1,8 @@
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 import { PageContainer } from './Container.styled';
 
 interface IProps {
-  children: React.ReactElement;
+  children: ReactNode;
 }
 export const Container: FC<IProps> = ({ children }) => {
   return <PageContainer>{children}</PageContainer>;
