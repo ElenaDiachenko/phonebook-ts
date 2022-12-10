@@ -1,27 +1,47 @@
-import PropTypes from 'prop-types';
-import { Formik, Form } from 'formik';
+import { FC, useEffect, useState } from 'react';
+import { Formik, Form, FormikHelpers } from 'formik';
 import toast from 'react-hot-toast';
 import { RiEdit2Line } from 'react-icons/ri';
 import { useWindowResize } from 'hooks/useWindowResize';
 import { Button, Label, Input, Message } from '../Forms/Form.styled';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from 'redux/hooks';
 import { editContact } from 'redux/contacts/operations';
 import { selectContacts } from 'redux/contacts/selectors';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { schema } from 'helpers/schema';
+import { IContact } from 'interfaces/IContact';
+import { IFormEditValues } from 'interfaces/IFormValues';
 
-export const ContactEditor = ({ onClose, id }) => {
-  const dispatch = useDispatch();
-  const contacts = useSelector(selectContacts);
-  const currentContact = contacts.find(contact => contact.id === id);
+interface IProps {
+  id: IContact['id'];
+  onClose: () => void;
+}
+
+export const ContactEditor: FC<IProps> = ({ onClose, id }) => {
+  const dispatch = useAppDispatch();
+  const contacts: IContact[] = useAppSelector(selectContacts);
+  const [initialValues, setInitialValues] = useState<IFormEditValues>({
+    name: '',
+    number: '',
+  });
   const { width } = useWindowResize();
 
-  const initialValues = {
-    name: currentContact.name,
-    number: currentContact.number,
-  };
+  useEffect(() => {
+    if (contacts.length > 0 && !id) return;
+    const currentContact = contacts.find(contact => contact.id === id);
+    if (currentContact) {
+      setInitialValues({
+           name: currentContact.name,
+           number: currentContact.number,
+         });
+    }
+  }, [contacts, id]);
 
-  const handleSubmit = async (values, { resetForm, setSubmitting }) => {
+
+  const handleSubmit = async (
+    values: IFormEditValues,
+    { resetForm, setSubmitting }: FormikHelpers<IFormEditValues>
+  ) => {
     await dispatch(editContact({ id, ...values }));
     toast.success(`Contact edited successfully`);
     onClose();
@@ -62,9 +82,4 @@ export const ContactEditor = ({ onClose, id }) => {
       </Formik>
     </>
   );
-};
-
-ContactEditor.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  id: PropTypes.string.isRequired,
 };
