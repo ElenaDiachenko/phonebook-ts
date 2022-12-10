@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 import { Formik, Form, FormikHelpers } from 'formik';
 import toast from 'react-hot-toast';
 import { RiEdit2Line } from 'react-icons/ri';
@@ -10,7 +10,7 @@ import { selectContacts } from 'redux/contacts/selectors';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { schema } from 'helpers/schema';
 import { IContact } from 'interfaces/IContact';
-import { IFormEditValues } from 'interfaces/IFormValues';
+import { IFormValues } from 'interfaces/IFormValues';
 
 interface IProps {
   id: IContact['id'];
@@ -19,28 +19,23 @@ interface IProps {
 
 export const ContactEditor: FC<IProps> = ({ onClose, id }) => {
   const dispatch = useAppDispatch();
-  const contacts: IContact[] = useAppSelector(selectContacts);
-  const [initialValues, setInitialValues] = useState<IFormEditValues>({
-    name: '',
-    number: '',
-  });
+  const contacts = useAppSelector(selectContacts);
+  const currentContact = contacts.find(contact => contact.id === id);
   const { width } = useWindowResize();
 
-  useEffect(() => {
-    if (contacts.length > 0 && !id) return;
-    const currentContact = contacts.find(contact => contact.id === id);
-    if (currentContact) {
-      setInitialValues({
-           name: currentContact.name,
-           number: currentContact.number,
-         });
-    }
-  }, [contacts, id]);
-
+  const initialValues = currentContact
+    ? {
+        name: currentContact.name,
+        number: currentContact.number,
+      }
+    : {
+        name: '',
+        number: '',
+      };
 
   const handleSubmit = async (
-    values: IFormEditValues,
-    { resetForm, setSubmitting }: FormikHelpers<IFormEditValues>
+    values: IFormValues,
+    { resetForm, setSubmitting }: FormikHelpers<IFormValues>
   ) => {
     await dispatch(editContact({ id, ...values }));
     toast.success(`Contact edited successfully`);

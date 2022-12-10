@@ -1,13 +1,14 @@
-import { Formik, Form } from 'formik';
+import { Formik, Form, FormikHelpers } from 'formik';
 import { ImPlus } from 'react-icons/im';
 import toast from 'react-hot-toast';
 import { Label, Input, Message, Button, Title } from './Form.styled';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from 'redux/hooks';
 import { addContact } from 'redux/contacts/operations';
 import { useWindowResize } from 'hooks/useWindowResize';
 import { selectContacts } from 'redux/contacts/selectors';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { schema } from 'helpers/schema';
+import { IFormValues } from 'interfaces/IFormValues';
 
 const initialValues = {
   name: '',
@@ -15,11 +16,12 @@ const initialValues = {
 };
 
 export const ContactForm = () => {
-  const contacts = useSelector(selectContacts);
-  const dispatch = useDispatch();
+  const contacts = useAppSelector(selectContacts);
+  const dispatch = useAppDispatch();
   const { width } = useWindowResize();
 
-  const addValidateValues = async values => {
+  const addValidateValues = async (values: IFormValues) => {
+    console.log(values);
     if (contacts.find(contact => contact.name === values.name)) {
       toast.error(`${values.name} is already in contacts`);
       return;
@@ -33,7 +35,10 @@ export const ContactForm = () => {
     }
   };
 
-  const handleSubmit = async (values, { resetForm, setSubmitting }) => {
+  const handleSubmit = async (
+    values: IFormValues,
+    { resetForm, setSubmitting }: FormikHelpers<IFormValues>
+  ) => {
     await addValidateValues(values);
 
     setSubmitting(false);
