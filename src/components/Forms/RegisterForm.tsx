@@ -1,8 +1,9 @@
-import { useDispatch } from 'react-redux';
-import { Formik, Form } from 'formik';
+import { useAppDispatch } from 'redux/hooks';
+import { Formik, Form, FormikHelpers } from 'formik';
 import { register } from 'redux/auth/auth-operations';
 import { Button, Label, Input, Message, Title } from './Form.styled';
 import { schema } from 'helpers/register-schema';
+import { IFormRegisterValues } from 'interfaces/IFormValues';
 
 const initialValues = {
   name: '',
@@ -11,10 +12,12 @@ const initialValues = {
 };
 
 export const RegisterForm = () => {
-  const dispatch = useDispatch();
-  const handleSubmit = (value, { resetForm, setSubmitting }) => {
+  const dispatch = useAppDispatch();
+  const handleSubmit = (
+    value: IFormRegisterValues,
+    { resetForm, setSubmitting }: FormikHelpers<IFormRegisterValues>
+  ) => {
     setSubmitting(false);
-    console.log(value);
     dispatch(register(value));
     resetForm();
   };
