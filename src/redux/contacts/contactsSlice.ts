@@ -1,4 +1,9 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import {
+  createSlice,
+  PayloadAction,
+  AnyAction,
+  isPending,
+} from '@reduxjs/toolkit';
 import {
   fetchContacts,
   addContact,
@@ -55,16 +60,8 @@ const handleDeleteContact = (
   state.error = null;
 };
 
-const handleAnyPending = (state: IContactState) => {
-  state.isLoading = true;
-};
-
-const handleAnyRejected = (
-  state: IContactState,
-  action: PayloadAction<any>
-) => {
-  state.isLoading = false;
-  state.error = action.payload;
+const isError = (action: AnyAction) => {
+  return action.type.endsWith('rejected');
 };
 
 const contactsSlice = createSlice({
@@ -77,14 +74,13 @@ const contactsSlice = createSlice({
       .addCase(addContact.fulfilled, handleAddContact)
       .addCase(editContact.fulfilled, handleEditContact)
       .addCase(deleteContact.fulfilled, handleDeleteContact)
-      .addCase(fetchContacts.pending, handleAnyPending)
-      .addCase(addContact.pending, handleAnyPending)
-      .addCase(editContact.pending, handleAnyPending)
-      .addCase(deleteContact.pending, handleAnyPending)
-      .addCase(fetchContacts.rejected, handleAnyRejected)
-      .addCase(addContact.rejected, handleAnyRejected)
-      .addCase(editContact.rejected, handleAnyRejected)
-      .addCase(deleteContact.rejected, handleAnyRejected),
+      .addMatcher(isPending, state => {
+        state.isLoading = true;
+      })
+      .addMatcher(isError, (state, action: PayloadAction<string>) => {
+        state.error = action.payload;
+        state.isLoading = false;
+      }),
 });
 
 export const contactsReducer = contactsSlice.reducer;
