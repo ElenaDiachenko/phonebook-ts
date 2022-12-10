@@ -8,7 +8,7 @@ import { useWindowResize } from 'hooks/useWindowResize';
 import { selectContacts } from 'redux/contacts/selectors';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { schema } from 'helpers/schema';
-import { IFormValues } from 'interfaces/IFormValues';
+import { IFormContactValues } from 'interfaces/IFormValues';
 
 const initialValues = {
   name: '',
@@ -20,7 +20,7 @@ export const ContactForm = () => {
   const dispatch = useAppDispatch();
   const { width } = useWindowResize();
 
-  const addValidateValues = async (values: IFormValues) => {
+  const addValidateValues = async (values: IFormContactValues) => {
     console.log(values);
     if (contacts.find(contact => contact.name === values.name)) {
       toast.error(`${values.name} is already in contacts`);
@@ -36,8 +36,8 @@ export const ContactForm = () => {
   };
 
   const handleSubmit = async (
-    values: IFormValues,
-    { resetForm, setSubmitting }: FormikHelpers<IFormValues>
+    values: IFormContactValues,
+    { resetForm, setSubmitting }: FormikHelpers<IFormContactValues>
   ) => {
     await addValidateValues(values);
 

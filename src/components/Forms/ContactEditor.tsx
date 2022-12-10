@@ -10,7 +10,7 @@ import { selectContacts } from 'redux/contacts/selectors';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { schema } from 'helpers/schema';
 import { IContact } from 'interfaces/IContact';
-import { IFormValues } from 'interfaces/IFormValues';
+import { IFormContactValues } from 'interfaces/IFormValues';
 
 interface IProps {
   id: IContact['id'];
@@ -34,8 +34,8 @@ export const ContactEditor: FC<IProps> = ({ onClose, id }) => {
       };
 
   const handleSubmit = async (
-    values: IFormValues,
-    { resetForm, setSubmitting }: FormikHelpers<IFormValues>
+    values: IFormContactValues,
+    { resetForm, setSubmitting }: FormikHelpers<IFormContactValues>
   ) => {
     await dispatch(editContact({ id, ...values }));
     toast.success(`Contact edited successfully`);

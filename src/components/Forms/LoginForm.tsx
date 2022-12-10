@@ -1,8 +1,9 @@
-import { useDispatch } from 'react-redux';
-import { Formik, Form } from 'formik';
+import { useAppDispatch } from 'redux/hooks';
+import { Formik, Form, FormikHelpers } from 'formik';
 import { Button, Label, Input, Message, Title } from './Form.styled';
 import { logIn } from 'redux/auth/auth-operations';
 import { schema } from 'helpers/login-schema';
+import { IFormLoginValues } from 'interfaces/IFormValues';
 
 const initialValues = {
   email: '',
@@ -10,8 +11,11 @@ const initialValues = {
 };
 
 export const LoginForm = () => {
-  const dispatch = useDispatch();
-  const handleSubmit = (values, { resetForm, setSubmitting }) => {
+  const dispatch = useAppDispatch();
+  const handleSubmit = (
+    values: IFormLoginValues,
+    { resetForm, setSubmitting }: FormikHelpers<IFormLoginValues>
+  ) => {
     setSubmitting(false);
     dispatch(logIn(values));
     resetForm();
