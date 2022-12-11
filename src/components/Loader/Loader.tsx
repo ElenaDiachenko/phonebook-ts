@@ -1,5 +1,4 @@
 import { ClipLoader } from 'react-spinners';
-
 import { LoaderWrap } from './Loader.styled';
 
 export const Loader = () => {
