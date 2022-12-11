@@ -1,14 +1,13 @@
 import { FaTrashAlt } from 'react-icons/fa';
 import { RiEdit2Line } from 'react-icons/ri';
 import toast from 'react-hot-toast';
-import PropTypes from 'prop-types';
 import {
   ContactName,
   ContactNumber,
   ContentWrap,
   ButtonstWrap,
 } from './Contact.styled';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from 'redux/hooks';
 import { deleteContact } from 'redux/contacts/operations';
 import { Modal } from '../Modal/Modal';
 import { ContactEditor } from '../Forms/ContactEditor';
@@ -16,8 +15,13 @@ import { useModal } from 'hooks/useModal';
 import { Box } from 'components/Box';
 import { Button } from 'components/Button/Button';
 
-export const Contact = ({ name, number, id }) => {
-  const dispatch = useDispatch();
+interface IProps {
+  name: string;
+  number: string;
+  id: string;
+}
+export const Contact: React.FC<IProps> = ({ name, number, id }) => {
+  const dispatch = useAppDispatch();
   const { isModalOpen, closeModal, openModal } = useModal();
 
   const handleDelete = () => {
@@ -35,10 +39,18 @@ export const Contact = ({ name, number, id }) => {
           <ContactNumber>{number}</ContactNumber>
         </ContentWrap>
         <ButtonstWrap>
-          <Button onClick={handleDelete} aria-label={`Delete ${name}`}>
+          <Button
+            type="button"
+            onClick={handleDelete}
+            aria-label={`Delete ${name}`}
+          >
             <FaTrashAlt />
           </Button>
-          <Button onClick={handleOpenModal} aria-label={`Edit ${name}`}>
+          <Button
+            type="button"
+            onClick={handleOpenModal}
+            aria-label={`Edit ${name}`}
+          >
             <RiEdit2Line />
           </Button>
         </ButtonstWrap>
@@ -50,10 +62,4 @@ export const Contact = ({ name, number, id }) => {
       )}
     </>
   );
-};
-
-Contact.propTypes = {
-  name: PropTypes.string.isRequired,
-  number: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
 };
