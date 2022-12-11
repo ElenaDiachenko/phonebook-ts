@@ -24,7 +24,7 @@ export const ContactList = () => {
         </NavigateButton>
       </Box>
 
-      {visibleContacts.length > 0 ? (
+      {visibleContacts.length ? (
         <Box as="ul" display="flex" flexDirection="column" gridGap={3}>
           {visibleContacts.map(({ id, name, number }) => (
             <ContactItem key={id}>

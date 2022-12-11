@@ -14,13 +14,9 @@ import { ContactEditor } from '../Forms/ContactEditor';
 import { useModal } from 'hooks/useModal';
 import { Box } from 'components/Box';
 import { Button } from 'components/Button/Button';
+import { IContact } from 'interfaces/IContact';
 
-interface IProps {
-  name: string;
-  number: string;
-  id: string;
-}
-export const Contact: React.FC<IProps> = ({ name, number, id }) => {
+export const Contact: React.FC<IContact> = ({ name, number, id }) => {
   const dispatch = useAppDispatch();
   const { isModalOpen, closeModal, openModal } = useModal();
 
